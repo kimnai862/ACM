@@ -8,7 +8,7 @@ using namespace std;
 #define se second
 #define pb push_back
 #define mp make_pair
-#define ll long long 
+#define ll long long
 const int N = 1e6+5;
 vector<int>g[N],p,gg[N];
 vector<vector<int> >ans;
