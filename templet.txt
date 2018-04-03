@@ -129,3 +129,8 @@ struct SAM{
 	}
 }T;
 ************************************************************************
+Linear basis
+vector<int>base;
+void add(int x){for(auto &t:base)x=min(x,x^t);if(x){for(auto &t:base)t=min(t,t^x);base.pb(x);}}
+int query(int x){for(auto &t:base)x=min(x,x^t);return x;}//ask min
+************************************************************************
