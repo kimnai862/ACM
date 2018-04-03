@@ -73,6 +73,10 @@ struct SAM{
 		memset(ch,0,sizeof(ch));memset(dis,0,sizeof(dis));memset(fa,0,sizeof(fa));
 		tot=0;root=last=++tot;
 	}
+	void build(){
+		int n=strlen(a+1);
+		for(int i=1;i<=n;i++)add(i);
+	}
 	void add(int pos){
 		int x=a[pos]-'a',p=last,np=++tot;
 		last=np,dis[np]=pos;
