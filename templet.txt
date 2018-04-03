@@ -65,3 +65,44 @@ void ac_automation(char *ch)
 	}
 }
 ************************************************************************
+Suffix Automaton
+struct SAM{
+	int ch[N][26],tot,dis[N],fa[N],root,last;
+	char a[N];
+	void init(){
+		memset(ch,0,sizeof(ch));memset(dis,0,sizeof(dis));memset(fa,0,sizeof(fa));
+		tot=0;root=last=++tot;
+	}
+	void add(int pos){
+		int x=a[pos]-'a',p=last,np=++tot;
+		last=np,dis[np]=pos;
+		for(;p&&!ch[p][x];p=fa[p])ch[p][x]=np;
+		if(!p)fa[np]=root;
+		else{
+			int q=ch[p][x];
+			if(dis[q]==dis[p]+1)fa[np]=q;
+			else{
+				int nq=++tot;
+				dis[nq]=dis[p]+1;
+				memcpy(ch[nq],ch[q],sizeof(ch[q]));
+				fa[nq]=fa[q],fa[np]=fa[q]=nq;
+				for(;ch[p][x]==q;p=fa[p])ch[p][x]=nq;
+			}
+		}
+	}
+	int ask(char b[])//Longest Commom Substring
+	{
+		int ans=0,len=0,p=root,m=strlen(b+1);
+		for(int i=1;i<=m;i++){
+			int x=b[i]-'a';
+			if(ch[p][x])len++,p=ch[p][x];
+			else{
+				while(p&&!ch[p][x])p=fa[p];
+				if(!p)p=root,len=0;
+				else len=dis[p]+1,p=ch[p][x];
+			}ans=max(ans,len);
+		}
+		return ans;
+	}
+}T;
+************************************************************************
