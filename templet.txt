@@ -1,0 +1,67 @@
+************************************************************************
+Aho-Corasick automaton
+struct node
+{
+	node *next[26];
+	node *fail;
+	int sum;
+};
+node *root,*newnode,*q[N];
+int cnt,head,tail;
+void insert(char *s)
+{
+	node *p=root;
+	for(int i=0;s[i];i++){
+		int x=s[i]-'a';
+		if(p->next[x]==NULL){
+			newnode=(struct node*)malloc(sizeof(struct node));
+			for(int j=0;j<26;j++)newnode->next[j]=NULL;
+			newnode->sum=0;newnode->fail=NULL;
+			p->next[x]=newnode;
+		}
+		p=p->next[x];
+	}
+	p->sum++;
+}
+void build_fail()
+{
+	head=0;tail=1;q[head]=root;
+	node *p,*temp;
+	while(head<tail){
+		temp=q[head++];
+		for(int i=0;i<26;i++){
+			if(temp->next[i]){
+				if(temp==root) temp->next[i]->fail=root;
+				else{
+					p=temp->fail;
+					while(p){
+						if(p->next[i]){temp->next[i]->fail=p->next[i];break;}
+						p=p->fail;
+					}
+					if(p==NULL)temp->next[i]->fail=root;
+				}
+				q[tail++]=temp->next[i];
+			}
+		}
+	}
+}
+void ac_automation(char *ch)
+{
+	node *p=root;
+	for(int i=0;ch[i];i++){
+		int x=ch[i]-'a';
+		while(!p->next[x]&&p!=root)p=p->fail;
+		p=p->next[x];
+		if(!p)p=root;
+		node *temp=p;
+		while(temp!=root){
+			if(temp->sum>=0){
+				cnt+=temp->sum;
+				temp->sum=-1;
+			}
+			else break;
+			temp=temp->fail;
+		}
+	}
+}
+************************************************************************
