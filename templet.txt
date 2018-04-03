@@ -67,11 +67,12 @@ void ac_automation(char *ch)
 ************************************************************************
 Suffix Automaton
 struct SAM{
-	int ch[N][26],tot,dis[N],fa[N],root,last;
+	int ch[N][26],tot,dis[N],fa[N],root,last,sg[N];
 	char a[N];
-	void init(){
-		memset(ch,0,sizeof(ch));memset(dis,0,sizeof(dis));memset(fa,0,sizeof(fa));
-		tot=0;root=last=++tot;
+	bool init(){
+		memset(ch,0,sizeof(ch));memset(dis,0,sizeof(dis));
+		memset(fa,0,sizeof(fa));memset(sg,-1,sizeof(sg));
+		tot=0;root=last=++tot;return true;
 	}
 	void build(){
 		int n=strlen(a+1);
@@ -94,8 +95,8 @@ struct SAM{
 			}
 		}
 	}
-	int ask(char b[])//Longest Commom Substring
-	{
+	//Longest Commom Substring
+	int ask(char b[]){
 		int ans=0,len=0,p=root,m=strlen(b+1);
 		for(int i=1;i<=m;i++){
 			int x=b[i]-'a';
@@ -107,6 +108,24 @@ struct SAM{
 			}ans=max(ans,len);
 		}
 		return ans;
+	}
+	//sg function
+	void getsg(int p){
+		if(sg[p]!=-1)return ;
+		bool vis[31];//can change 31
+		for(int i=0;i<=30;i++)vis[i]=false;
+		for(int i=0;i<26;i++){ 
+			if(ch[p][i]){
+				if(sg[ch[p][i]]==-1)getsg(ch[p][i]);
+				vis[sg[ch[p][i]]]=1;
+			}
+		}
+		for(int i=0;i<=30;i++) if(!vis[i]){sg[p]=i;return ;}
+	}
+	int calsg(char b[]){
+		int m=strlen(b+1),p=1;
+		for(int i=1;i<=m;i++)p=ch[p][b[i]-'a'];
+		return sg[p];
 	}
 }T;
 ************************************************************************
