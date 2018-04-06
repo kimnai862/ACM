@@ -134,3 +134,18 @@ vector<int>base;
 void add(int x){for(auto &t:base)x=min(x,x^t);if(x){for(auto &t:base)t=min(t,t^x);base.pb(x);}}
 int query(int x){for(auto &t:base)x=min(x,x^t);return x;}//ask min
 ************************************************************************
+Mobius function
+void init_mus()
+{
+	cnt=0;memset(vis,0,sizeof(vis));
+	mus[1]=1;
+	for(int i=2;i<N;i++){
+		if(!vis[i]){prime[cnt++]=i;mus[i]=-1;}
+		for(int j=0;j<cnt&&i*prime[j]<N;j++){
+			vis[i*prime[j]]=1;
+			if(i%prime[j]==0){mus[i*prime[j]]=0;break;}
+			else mus[i*prime[j]]=-mus[i];
+		}
+	}
+}
+************************************************************************
