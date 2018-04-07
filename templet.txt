@@ -149,3 +149,25 @@ void init_mus()
 	}
 }
 ************************************************************************
+Euler function
+void init_euler()
+{
+	euler[1]=1;
+	for(int i=2;i<N;i++)euler[i]=i;
+	for(int i=2;i<N;i++)
+		if(euler[i]==i)
+			for(int j=i;j<N;j+=i)
+				euler[j]=euler[j]/i*(i-1);
+	pre[0]=0;
+	for(int i=1;i<N;i++)pre[i]=(pre[i-1]+euler[i])%p;
+}
+
+************************************************************************
+x*(x+1)/2 <==> mult(x,x+1,p)*modexp(2,p-2,p)%p
+inline ll mult(ll a,ll b,ll p)
+{
+	ll ans=0;
+	while(b){if(b&1)ans=(ans+a)%p;b>>=1;a=(a+a)%p;}
+	return ans;
+}
+************************************************************************
