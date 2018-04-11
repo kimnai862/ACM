@@ -152,16 +152,16 @@ void init_mus()
 Euler function
 void init_euler()
 {
-	memset(p,0,sizeof(p));
+	memset(prime,0,sizeof(p));
 	memset(phi,0,sizeof(phi));
 	memset(vis,0,sizeof(vis));
 	for(int i=2;i<N;i++){
-		if(!vis[i]){p[++p[0]]=i;phi[i]=i-1;}
-		for(int j=1;j<=p[0];j++){
-			if(i*p[j]>=N)break;
-			vis[i*p[j]]=true;
-			if(!(i%p[j])){phi[i*p[j]]=phi[i]*p[j];break;}
-			phi[i*p[j]]=phi[i]*(p[j]-1);
+		if(!vis[i]){prime[++prime[0]]=i;phi[i]=i-1;}
+		for(int j=1;j<=prime[0];j++){
+			if(i*prime[j]>=N)break;
+			vis[i*prime[j]]=true;
+			if(!(i%prime[j])){phi[i*prime[j]]=phi[i]*prime[j];break;}
+			phi[i*prime[j]]=phi[i]*(prime[j]-1);
 		}
 	}phi[1]=1;
 }
