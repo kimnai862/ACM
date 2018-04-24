@@ -348,7 +348,7 @@ for(int k=1;k<=(1<<n)-1;k++)
 ************************************************************************
 jisuanjihe
 #define P vector<double>
-P three_plane(P a,P b,P c)//san dian qiu pingmian
+P three_plane(P a,P b,P c)//san dian qiu pingmian Ax+By+Cz+D=0;
 {
 	double x1,x2,x3,y1,y2,y3,z1,z2,z3;
 	x1=a[0];x2=b[0];x3=c[0];
@@ -362,7 +362,7 @@ P three_plane(P a,P b,P c)//san dian qiu pingmian
 	return ans;
 }
 
-pair<double,P> point_area(P a,P pla)//dian dao mian de juli he touying
+pair<double,P> point_area(P a,P pla)//dian dao mian de juli he touying pla shi pingmian faxiangliang {A,B,C}
 {
 	double A,B,C,D;A=pla[0],B=pla[1],C=pla[2];D=pla[3];
 	double x0,y0,z0;x0=a[0],y0=a[1],z0=a[2];
