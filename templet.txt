@@ -340,3 +340,38 @@ struct Dinic
 
 }sol;
 ************************************************************************
+Hamiltonian path
+for(int k=1;k<=(1<<n)-1;k++)
+	for(int i=1;i<=n;i++)
+		for(int j=1;j<=n;j++)
+			if((1<<(i-1))&k)dp[i][k]=min(dp[i][k],dp[j][k-(1<<(i-1))]+dis[j][i]);
+************************************************************************
+jisuanjihe
+#define P vector<double>
+P three_plane(P a,P b,P c)//san dian qiu pingmian
+{
+	double x1,x2,x3,y1,y2,y3,z1,z2,z3;
+	x1=a[0];x2=b[0];x3=c[0];
+	y1=a[1];y2=b[1];y3=c[1];
+	z1=a[2];z2=b[2];z3=c[2];
+	double A = y1*(z2-z3)+y2*(z3-z1)+y3*(z1-z2);
+	double B = z1*(x2-x3)+z2*(x3-x1)+z3*(x1-x2);
+	double C = x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2);
+	double D = -(x1*(y2*z3-y3*z2)+ x2*(y3*z1-y1*z3) + x3*(y1*z2 -y2*z1) );
+	P ans;ans={A,B,C,D};
+	return ans;
+}
+
+pair<double,P> point_area(P a,P pla)//dian dao mian de juli he touying
+{
+	double A,B,C,D;A=pla[0],B=pla[1],C=pla[2];D=pla[3];
+	double x0,y0,z0;x0=a[0],y0=a[1],z0=a[2];
+	double d=fabs(A*x0+B*y0+C*z0+D)/sqrt(A*A+B*B+C*C);
+	double t=(A*x0+B*y0+C*z0+D)/(A*A+B*B+C*C);
+	double x,y,z;
+	x=x0-A*t;y=y0-B*t;z=z0-C*t;
+	pair<double,P> ans;
+	ans={d,{x,y,z}};
+	return ans;
+}
+************************************************************************
