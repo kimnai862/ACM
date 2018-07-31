@@ -1,10 +1,3 @@
-# 模板
-
-[TOC]
-
-## 计算几何
-
-```cpp
 #include <bits/stdc++.h>
 using namespace std;
 const double eps=1e-8;
@@ -59,59 +52,6 @@ vector<point> graham(vector<point> p){
     res.resize(m);
     return res;
 }
-
-int main(){
-    
-    return 0;
-}
-
-```
-
-###  判断三个圆是否有公共点
-
-```c++
-#define point complex<double>
-/*
-real 返回实部
-imag 返回虚部
-abs 返回复数的模
-arg 返回辐角
-*/
-bool inter(point a, double r_a, point b, double r_b, point c, double r_c)
-{
-    if(abs(c - a) <= r_a && abs(c - b) <= r_b)
-        return true;
-    b -= a, c -= a;
-    point r = point(b.real() / abs(b), b.imag() / abs(b));
-    b /= r, c /= r;
-    double d = (r_a * r_a - r_b * r_b + abs(b) * abs(b)) / (2 * abs(b)),
-           h = sqrt(max(r_a * r_a - d * d, 0.0));
-    if(abs(h * h + (d - abs(b)) * (d - abs(b)) - r_b * r_b) > eps)
-        return false;
-    if(abs(point(d, h) - c) <= r_c)
-        return true;
-    if(abs(point(d, -h) - c) <= r_c)
-        return true;
-    return false;
-}
-bool check(point a, double r_a, point b, double r_b, point c, double r_c)
-{
-    if(r_a <= -eps || r_b <= -eps || r_c <= -eps)
-        return false;
-    r_a = max(r_a, 0.0), r_b = max(r_b, 0.0), r_c = max(r_c, 0.0);
-    if(inter(a, r_a, b, r_b, c, r_c))
-        return true;
-    if(inter(b, r_b, c, r_c, a, r_a))
-        return true;
-    if(inter(c, r_c, a, r_a, b, r_b))
-        return true;
-    return false;
-}
-```
-
-### 简单多边形与圆面积交
-
-``` C++
 
 
 double dot( point a , point b ) { return a.x * b.x + a.y * b.y ; }
@@ -197,5 +137,9 @@ double area_CircleAndPolygon( point *p , int n , point o , double r )
 }
 // 简单多边形与圆面积交
 //p 简单多边形(有序),n 多边形个数, o 圆心 r 半径
-```
 
+
+int main(){
+    
+    return 0;
+}
