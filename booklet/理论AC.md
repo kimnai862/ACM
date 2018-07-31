@@ -2,7 +2,7 @@
 
 [TOC]
 
-## codeforces 1 （3/3）
+## 1 [Codeforces Beta Round #1](http://codeforces.com/contest/1) （3/3）
 
 ### A [Theatre Square](http://codeforces.com/contest/1/problem/A)  
 
@@ -22,7 +22,7 @@
 
 答案：显然可以选两条直线算出正多边形中点，面积与多边形点数成正比，二分乱搞即可
 
-## codeforces 2 （3/3）
+## 2 [Codeforces Beta Round #2](http://codeforces.com/contest/2) （3/3）
 
 ### A [Winner](http://codeforces.com/contest/2/problem/A)
 
@@ -56,7 +56,7 @@
 
 任取两个点集求交集即可
 
-## codeforces 3 （4/4） 
+## 3 [Codeforces Beta Round #3](http://codeforces.com/contest/3) （4/4） 
 
 ### A [Shortest path of the king](http://codeforces.com/contest/3/problem/A)
 
@@ -84,7 +84,7 @@
 
 答案：我们可以先将所有“?”变成右括号，这样问题转化为有若干个右括号可以变化为左括号，然后维护一个优先队列，当需要转化时，选取转换代价最小的括号即可
 
-## codeforces 4 （4/4）
+## 4 [Codeforces Beta Round #4 (Div. 2 Only)](http://codeforces.com/contest/4) （4/4）
 
 ### A [Watermelon](http://codeforces.com/contest/4/problem/A) 
 
@@ -112,7 +112,7 @@ n<30,sum<240
 
 答案：排序之后dp到第i个信封时最多可以套几个信封即可
 
-## codeforces 5 （5/5）
+## 5 [Codeforces Beta Round #5](http://codeforces.com/contest/5) （5/5）
 
 ### A [Chat Servers Outgoing Traffic](http://codeforces.com/contest/5/problem/A)
 
@@ -144,7 +144,7 @@ n<30,sum<240
 
 答案：将数组复制一次即可模拟圆，然后用单调栈即可维护区间最大值，细节处理即可
 
-## codeforces 6 （5/5）
+## 6 [Codeforces Beta Round #6 (Div. 2 Only)](http://codeforces.com/contest/6) （5/5）
 
 ### A [Triangle](http://codeforces.com/contest/6/problem/A)
 
@@ -176,7 +176,7 @@ n<30,sum<240
 
 答案：首先二分区间，然后对于固定的区间可以用单调队列维护区间最大值和最小值
 
-## codeforces 7 （5/5）
+## 7 [Codeforces Beta Round #7](http://codeforces.com/contest/7) （5/5）
 
 ### A [Kalevitch and Chess](http://codeforces.com/contest/7/problem/A)
 
@@ -208,7 +208,7 @@ n<30,sum<240
 
 答案：乱搞即可
 
-## codeforces 8 （5/5）
+## 8 [Codeforces Beta Round #8](http://codeforces.com/contest/8) （5/5）
 
 ### A [Train and Peter](http://codeforces.com/contest/8/problem/A)
 
@@ -240,11 +240,25 @@ n<30,sum<240
 
 答案：n<50,考虑按位求字典序，假设已经知道其前i-1个位置，采用数位dp的方法计算假设第i位为0的方法数x,如果x>k,则第i位为0，否则第i位为1并且k-=x
 
-## codeforces9
+## 9  [Codeforces Beta Round #9 (Div. 2 Only)](http://codeforces.com/contest/9) 
 
 ### A [Die Roll](http://codeforces.com/contest/9/problem/A)
 
 给定两个骰子扔出的值，问扔一次骰子赢的概率是多少
 
 答案：简单题。。。
+
+### B [Running Student](http://codeforces.com/contest/9/problem/B)
+
+已知x轴正方向的若干点和平面中的一点P,从原点到若干点的速度为v,从若干点到P的速度为s，求从原点到P的最少时间
+
+答案：枚举从哪一点到P，更新最小值即可
+
+### C [Hexadecimal's Numbers](http://codeforces.com/contest/9/problem/C)
+
+小于n的只用01表示的数字有多少个
+
+答案：显然这样的数字只有$2^{len(n)}$个，枚举排序查找即可
+
+### D [How many trees?](http://codeforces.com/contest/9/problem/D) 
 
