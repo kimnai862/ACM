@@ -240,7 +240,7 @@ n<30,sum<240
 
 答案：n<50,考虑按位求字典序，假设已经知道其前i-1个位置，采用数位dp的方法计算假设第i位为0的方法数x,如果x>k,则第i位为0，否则第i位为1并且k-=x
 
-## 9  [Codeforces Beta Round #9 (Div. 2 Only)](http://codeforces.com/contest/9) 
+## 9  [Codeforces Beta Round #9 (Div. 2 Only)](http://codeforces.com/contest/9) （5/5）
 
 ### A [Die Roll](http://codeforces.com/contest/9/problem/A)
 
@@ -261,4 +261,24 @@ n<30,sum<240
 答案：显然这样的数字只有$2^{len(n)}$个，枚举排序查找即可
 
 ### D [How many trees?](http://codeforces.com/contest/9/problem/D) 
+
+给定n个点，问树高大于等于h的二叉搜索树有多少个
+
+答案：考虑dp，状态（u，x，h）表示当前节点是u，该子树有x个节点，其树高为h的树的方案数
+
+答案就是$\sum_{i=h}^{n}$dp(1,n,i)
+
+### E [Interestring graph and Apples](http://codeforces.com/contest/9/problem/E) 
+
+给定一个无向图，问至少需要几条边才能使每个点在并且只在一个环上并输出字典序最小的方案数
+
+答案：显然，符合条件的无向图只能是一个环，所以可以得到最初无向图的每个部分只能是一条链，遍历然后连接即可
+
+## 10 [Codeforces Beta Round #10](http://codeforces.com/contest/10) 
+
+### A [ Power Consumption Calculation](http://codeforces.com/contest/10/problem/A) 
+
+电脑有三种不同情况的功率，给定工作时间，求最后的耗电
+
+答案：模拟
 
