@@ -125,11 +125,11 @@ int find_kth(int k)//第k小
 
 ### 字符串hash
 
-​	 $h[i] = h[i-1] \ast  p + val[i]$
+ $h[i] = h[i-1] \ast  p + val[i]$
 
-​	 h[i...j] = ($(h[j] - h[i-1] \ast p^{j-i+1})$%mod + mod)%mod
+ h[i...j] = ($(h[j] - h[i-1] \ast p^{j-i+1})$%mod + mod)%mod
 
-​	p = 233 mod = 1e9+9
+p = 233 mod = 1e9+9
 
 ### ST表
 
@@ -149,260 +149,298 @@ int ask(int l,int r){int k=log2(r-l+1);return max(f[k][l],f[k][r-num[k]+1]);}
 
 ### Farey 序列
 
-​	F1={0/1，1/1}；
+F1={0/1，1/1}；
 
-​	F2={0/1，1/2，1/1}
+F2={0/1，1/2，1/1}
 
-​	F3={0/1，1/3，1/2，2/3，1/1}
+F3={0/1，1/3，1/2，2/3，1/1}
 
-​	除了F1，其余Farey序列都有奇数个元素，并且中间值是1/2 
+除了F1，其余Farey序列都有奇数个元素，并且中间值是1/2 
 
-​	Farey序列是一个对称序列，头尾之和为1 
+Farey序列是一个对称序列，头尾之和为1 
 
-​	假如序列中有三个连续元素x1/y1, x2/y2, x3/y3，则有x2 = x1+x3; y2 = y1+y3;并且有x1*y2 – x2*y1 = 1
+假如序列中有三个连续元素x1/y1, x2/y2, x3/y3，则有x2 = x1+x3; y2 = y1+y3;并且有x1*y2 – x2*y1 = 1
 
 ### Stern-Brocot树 （构成所有有理数）
 
-​	算法的思想是由(0/1, 1/0)开始，然后不断地重复以下的操作：在相邻的两个分数m/n和m'/n'插入	 	(m+m')/(n+n')。 
+算法的思想是由(0/1, 1/0)开始，然后不断地重复以下的操作：在相邻的两个分数m/n和m'/n'插入	 	(m+m')/(n+n')。 
 
 
 
 ## 组合数学
 
-​	 $C_{n+1}^{m}=C_{n}^{m}+C_{n}^{m-1}$
+ $C_{n+1}^{m}=C_{n}^{m}+C_{n}^{m-1}$
 
-​	 $\sum_{i=0}^{k}C_{n}^{i}=C_{n+1}^{k+1}$
+ $\sum_{i=0}^{k}C_{n}^{i}=C_{n+1}^{k+1}$
 
 ### 错排公式
 
-​	D(n) = (n-1) [D(n-2) + D(n-1)] 
+D(n) = (n-1) [D(n-2) + D(n-1)] 
 
-​	D(n) = n! [(-1)^2/2! + … + (-1)^(n-1)/(n-1)! + (-1)^n/n!]. 
+D(n) = n! [(-1)^2/2! + … + (-1)^(n-1)/(n-1)! + (-1)^n/n!]. 
 
 ### 圆排列
 
-​	从n个不同[元素](https://baike.baidu.com/item/%E5%85%83%E7%B4%A0/29645)中不重复地取出m（1≤m≤n）个元素在一个圆周上，叫做这n个不同元素的圆排列。如果一个m-圆排列旋转可以得到另一个m-圆排列，则认为这两个圆排列相同。  
+从n个不同[元素](https://baike.baidu.com/item/%E5%85%83%E7%B4%A0/29645)中不重复地取出m（1≤m≤n）个元素在一个圆周上，叫做这n个不同元素的圆排列。如果一个m-圆排列旋转可以得到另一个m-圆排列，则认为这两个圆排列相同。  
 
-​	n个不同元素的m-圆排列个数N为 $\frac{n!}{(n-m)!\times m}$
+n个不同元素的m-圆排列个数N为 $\frac{n!}{(n-m)!\times m}$
 
 ### lucas定理
 
-​	C(n,m)%p=C(n/p,m/p)*C(n%p,m%p)%p 
+C(n,m)%p=C(n/p,m/p)*C(n%p,m%p)%p 
+
+### 斯特林公式
+
+ $n!\approx\sqrt{2\pi n}(\frac{n}{e})^n$ 应用：求n!的位数
 
 ### 第一类斯特林数 s(p,k)
 
-​	 $s(p,k)$ ：p个人分成k组做环排列的方法数目
+ $s(p,k)$ ：p个人分成k组做环排列的方法数目
 
-​	 $s(p,k) = (p - 1) \ast s(p - 1,k) + s(p - 1,k - 1) ,1<=k<=p- 1 $
+ $s(p,k) = (p - 1) \ast s(p - 1,k) + s(p - 1,k - 1) ,1<=k<=p- 1 $
 
-​	 边界条件：$s(p,0) = 0 ,p>=1 $        $s(p,p)=1,p>=0$
+ 边界条件：$s(p,0) = 0 ,p>=1 $        $s(p,p)=1,p>=0$
 
-​	 应用：
+ 应用：
 
-​		求自然数幂和： $\sum_{i=0}^{n}i^{k}$
+​	求自然数幂和： $\sum_{i=0}^{n}i^{k}$
 
-​		 			 $P_{n}^{k}=n\ast (n-1)\ast ...\ast (n-k+1)$
+ 			 $P_{n}^{k}=n\ast (n-1)\ast ...\ast (n-k+1)$
 
-​		 展开：		 $P_{n}^{k}=s(k,k)n^{k}-s(k,k-1)n^{k-1}...$
+ 展开：		 $P_{n}^{k}=s(k,k)n^{k}-s(k,k-1)n^{k-1}...$
 
-​					 $P_{n}^{k}=\sum_{i=0}^{k}(-1)^{k-i}s(k,i)n^{i}$
+​			 $P_{n}^{k}=\sum_{i=0}^{k}(-1)^{k-i}s(k,i)n^{i}$
 
-​		所以第一类斯特林数是排列数公式展开式的系数
+​	所以第一类斯特林数是排列数公式展开式的系数
 
-​		设：		 $S_{k}(n)=\sum_{i=0}^{n}i^{k}$
+​	显然左边是k个只有0次和1次的系数为(1,-(i-1))的多项式相乘
 
-​					 $C_{n}^{k}=\frac{P_{n}^{k}}{k!}=\frac{\sum_{i=0}^{k}(-1)^{k-i}s(k,i)n^{i}}{k!}$
+​	 可以用分治FFT在nlog^2(n)时间内求s(n,0),s(n,1),...,   
 
-​					 $n^{k}=C_{n}^{k}k! - \sum_{i=0}^{k-1}(-1)^{k-i}s(k,i)n^{i}$
+设：		 $S_{k}(n)=\sum_{i=0}^{n}i^{k}$
 
-​					 $S_{k}(n)=\sum_{i=0}^{n}i^{k}$
+​		 $C_{n}^{k}=\frac{P_{n}^{k}}{k!}=\frac{\sum_{i=0}^{k}(-1)^{k-i}s(k,i)n^{i}}{k!}$	
 
-​					 	    $=\sum_{i=0}^{n}(C_{i}^{k}k!-\sum_{j=0}^{k-1}(-1)^{k-j}s(k,j)i^{j})$
+​		 $n^{k}=C_{n}^{k}k! - \sum_{i=0}^{k-1}(-1)^{k-i}s(k,i)n^{i}$	
 
-​						    $=k!\sum_{i=0}^{n}C_{i}^{k}-\sum_{i=0}^{n}\sum_{j=0}^{k-1}(-1)^{k-j}s(k,j)i^{j}$
+​		 $S_{k}(n)=\sum_{i=0}^{n}i^{k}$	 	   
 
-​						    $=k!C_{n+1}^{k+1}-\sum_{j=0}^{k-1}(-1)^{k-j}s(k,j)S_{j}(n)$
+​			     $=\sum_{i=0}^{n}(C_{i}^{k}k!-\sum_{j=0}^{k-1}(-1)^{k-j}s(k,j)i^{j})$		 
 
-​						    $=\frac{P_{n+1}^{k+1}}{k+1}-\sum_{j=0}^{k-1}(-1)^{k-j}s(k,j)S_{j}(n)$
+​			     $=k!\sum_{i=0}^{n}C_{i}^{k}-\sum_{i=0}^{n}\sum_{j=0}^{k-1}(-1)^{k-j}s(k,j)i^{j}$		  			 
 
-​					可以$O(k^{2})$递推$s_{k}(n)$
+​			      $=k!C_{n+1}^{k+1}-\sum_{j=0}^{k-1}(-1)^{k-j}s(k,j)S_{j}(n)$		   
 
-​		另：		
+​			     $=\frac{P_{n+1}^{k+1}}{k+1}-\sum_{j=0}^{k-1}(-1)^{k-j}s(k,j)S_{j}(n)$	
+
+​		可以$O(k^{2})$递推$s_{k}(n)$ 
+
 
 ​					    
 
-
-
 ### 第二类斯特林数 S(p,k)
 
-​	 $S(p,k)$ ：p个不同的小球放进k个相同的非空的盒子的方法数
+ $S(p,k)$ ：p个不同的小球放进k个相同的非空的盒子的方法数
 
-​	 $S(p,k) = k \ast S(p-1,k) + S(p-1,k-1) , 1<=k<=p-1$
+ $S(p,k) = k \ast S(p-1,k) + S(p-1,k-1) , 1<=k<=p-1$
 
-​	 边界条件： $S(p,p)=1,p>=0$     $S(p,0)=0,p>=1$
+ 边界条件： $S(p,p)=1,p>=0$     $S(p,0)=0,p>=1$
 
-​			 $S(n,m)=\frac{1}{m!}\sum_{k=0}^{m}(-1)^{k}C(m,k)(m-k)^{n}$
+​		 $S(n,m)=\frac{1}{m!}\sum_{k=0}^{m}(-1)^{k}C(m,k)(m-k)^{n}$
 
-​			该式是个卷积，可以在nlogn时间内求出S(n,0),S(n,1),...
+​		该式是个卷积，可以在nlogn时间内求出S(n,0),S(n,1),...
 
-​	 应用：
+ 应用：
 
-​			 $n^{k}=\sum_{i=0}^{k}S(k,i)P_{n}^{i}$
+​	 $n^{k}=\sum_{i=0}^{k}S(k,i)P_{n}^{i}$     
 
-​			       $=\sum_{i=0}^{k}S(k,i)C_{n}^{i}i！$	
+​	      $=\sum_{i=0}^{k}S(k,i)C_{n}^{i}i！$	  
 
-​			      $=\sum_{i=0}^{k}S(k,i)i!(C_{n-1}^{i}+C_{n-1}^{i-1})$
+​	      $=\sum_{i=0}^{k}S(k,i)i!(C_{n-1}^{i}+C_{n-1}^{i-1})$    
 
-​			      $=(n-1)^{k}+\sum_{i=1}^{k}S(k,i)i!C_{n-1}^{i-1}$
+​	      $=(n-1)^{k}+\sum_{i=1}^{k}S(k,i)i!C_{n-1}^{i-1}$
 
 ### 贝尔数
 
-​	 定义：第n个bell数表示集合{1,2,3,...,n}的划分方案数，$B[0]=1$
+ 定义：第n个bell数表示集合{1,2,3,...,n}的划分方案数，$B[0]=1$
 
-​	 $B_{n+1}=\sum_{k=0}^{n}C(n,k)B_{k}$
+ $B_{n+1}=\sum_{k=0}^{n}C(n,k)B_{k}$
 
-​	 $B_{n}=\sum_{k=1}^{n}S(n,k)$
+ $B_{n}=\sum_{m=0}^{n}S(n,m)$
 
-​	 指数生成函数： $\sum_{n=0}^{\infty} \frac{B_{n}}{n!}x^{n}=e^{e^{x}-1}$
+​	 $=\sum_{m=0}^{n}\frac{1}{m!}\sum_{k=0}^{m}(-1)^kC(m,k)(m-k)^n$
+
+​	 $=\sum_{m=0}^{n}\sum_{k=0}^{m}\frac{(-1)^k}{k!}\ast \frac{(m-k)^n}{(m-k)!}$
+
+​	设$A_i=\frac{(-1)^i}{i!}, B_i=\frac{i^n}{i!}$
+
+​	 $=\sum_{m=0}^n\sum_{k=0}^mA_kB_{m-k}$
+
+​	 $=\sum_{i=0}^nA_i\sum_{m=0}^{n-i}B_m$
+
+​	 nlogn预处理即可得到$B_n$，写法简便
+
+ 指数生成函数： $\sum_{n=0}^{\infty} \frac{B_{n}}{n!}x^{n}=e^{e^{x}-1}$
+
+ 将$e^x-1$泰特展开后多项式求exp即可在nlogn的时间内求贝尔数的前n项和
+
+### 伯努利数 
+
+  $B_0=1,B_n=-\frac{1}{n+1}(C_{n+1}^{0}B_0+C_{n+1}^1B_1+...+C_{n+1}^{n-1}B_{n-1})$ 
+
+ 指数生成函数：
+
+​	 $G_e(x)=\sum_{i=0}^{\infty}\frac{B_i}{i!}x^i=\frac{x}{e^x-1}=\frac{x}{\sum_{i=1}^{\infty}\frac{x^i}{i!}}=\frac{1}{\sum_{i=0}^{\infty}\frac{x^i}{(i+1)!}}$
+
+​	可以用FFT多项式求逆在nlogn的时间内求前n项
+
+应用：自然数幂求和
+
+​	 $S_{m}(n)=\sum_{k=1}^nk^m=\frac{1}{m+1}\sum_{k=0}^m(-1)^kC(m+1,k)B_kn^{m+1-k}$
+
+
+​	
 
 ### 五边形数定理
 
-​	 $\phi(x)=\prod_{n=1}^{\infty}(1-x^n)=\sum_{-\infty}^{\infty}(-1)^{k}x^{\frac{k(3k-1)}{2}}=1+\sum_{k=1}^{\infty}(-1)^{k}x^{\frac{k(3k\pm 1)}{}}$
+​	 $\phi(x)=\prod_{n=1}^{\infty}(1-x^n)=\sum_{-\infty}^{\infty}(-1)^{k}x^{\frac{k(3k-1)}{2}}=1+\sum_{k=1}^{\infty}(-1)^{k}x^{\frac{k(3k\pm 1)}{2}}$
 
 ### 整数拆分问题
 
-​	 $P(x)=(1+x^1+x^2+..)(1+x^2+x^4+...)(1+x^3+x^6+...)...$
+ $P(x)=(1+x^1+x^2+..)(1+x^2+x^4+...)(1+x^3+x^6+...)...$
 
-​		   $=\prod_{i=0}^{\infty}\frac{1}{1-x^i}=P_{x}(0)x^0+P_{x}(1)x^1+P_{x}(2)x^2+...+P_{x}(n)x^{n}+...$
+​          $=\prod_{i=0}^{\infty}\frac{1}{1-x^i}=P_{x}(0)x^0+P_{x}(1)x^1+P_{x}(2)x^2+...+P_{x}(n)x^{n}+...$
 
-​	n的拆分数为$P_{x}(n)$
+n的拆分数为$P_{x}(n)$
 
 ​	 $\frac{1}{\phi(x)}=\sum_{i=0}^{\infty}P_{x}(i)x^i$
 
 ​	 $1=\phi(x)\sum_{i=0}^{\infty}P_{x}(i)x^i$
 
-​	    $=(1-x-x^2+x^5+...)(P_{x}(0)+P_{x}(1)x+P_{x}(2)x^{2}+P_{x}(3)x^3+...)$
+​	 $=(1-x-x^2+x^5+...)(P_{x}(0)+P_{x}(1)x+P_{x}(2)x^{2}+P_{x}(3)x^3+...)$
 
 ​	  $P_{x}(n)=P_{x}(n-1)+P_{x}(n-2)-P_{x}(n-5)-P_{x}(n-7)+...$
 
 ​	 $\frac{i(3i-1)}{2}\leq n$的i的个数不超过$\sqrt{n}$个 计算$P_{x}(n)$复杂度为$O(n\sqrt{n})$
 
-​	 **约束条件1：** 拆分出来的每种数的个数不能大于等于k
+ **约束条件1：** 拆分出来的每种数的个数不能大于等于k
 
-​		 $(1+x^1+x^2+...+x^{k-1})(1+x^2+x^4+...+x^{2(k-1)})=\prod_{i=0}^{\infty}\frac{1-x^{ki}}{1-x^i}=\frac{\phi(x^k)}{\phi(x)}=\phi(x^k)P(x)$
+ $(1+x^1+x^2+...+x^{k-1})(1+x^2+x^4+...+x^{2(k-1)})=\prod_{i=0}^{\infty}\frac{1-x^{ki}}{1-x^i}=\frac{\phi(x^k)}{\phi(x)}=\phi(x^k)P(x)$
 
-​		 $\phi(x^k)P(x)=(1-x^k-x^{2k}+x^{5k})(P_{x}(0)+P_{x}(1)x^1+P_{x}(2)x^2+P_{x}(3)x^3+...)$
+ $\phi(x^k)P(x)=(1-x^k-x^{2k}+x^{5k})(P_{x}(0)+P_{x}(1)x^1+P_{x}(2)x^2+P_{x}(3)x^3+...)$
 
-​		 $ans=F_{k}(n)=P_{x}(n)-P_{x}(n-k)-P_{x}(n-2k)+P_{x}(n-5k)+...$
+ $ans=F_{k}(n)=P_{x}(n)-P_{x}(n-k)-P_{x}(n-2k)+P_{x}(n-5k)+...$
 
 ### 球盒问题（n个球，m个盒）
 
-​	 **约束条件1：**球无区别 盒无区别 允许为空
+ **约束条件1：**球无区别 盒无区别 允许为空
 
-​		整数拆分问题 答案为$x^n$的系数
+​	整数拆分问题 答案为$x^n$的系数
 
-​	 **约束条件2：**球无区别 盒无区别 不允许为空
+ **约束条件2：**球无区别 盒无区别 不允许为空
 
-​		整数拆分问题 答案为$x^{n-m}$的系数
+​	整数拆分问题 答案为$x^{n-m}$的系数
 
-​	 **约束条件3：**球无区别 盒有区别 允许为空
+ **约束条件3：**球无区别 盒有区别 允许为空
 
-​		隔板法 答案为 $C(m+n-1,m-1)$
+​	隔板法 答案为 $C(m+n-1,m-1)$
 
-​	 **约束条件4：**球无区别 盒有区别 不允许为空
+ **约束条件4：**球无区别 盒有区别 不允许为空
 
-​		隔板法 答案为 $C(n-1,m-1)$
+​	隔板法 答案为 $C(n-1,m-1)$
 
-​	 **约束条件5：**球有区别 盒有区别 允许为空
+ **约束条件5：**球有区别 盒有区别 允许为空
 
-​		指数型母函数 答案为 $m^n$
+​	指数型母函数 答案为 $m^n$
 
-​	 **约束条件6：**球有区别 盒有区别 不允许为空
+ **约束条件6：**球有区别 盒有区别 不允许为空
 
-​		指数型母函数 答案为 $\sum_{k=0}^{m}(-1)^{k}C(m,k)(m-k)^n$
+​	指数型母函数 答案为 $\sum_{k=0}^{m}(-1)^{k}C(m,k)(m-k)^n$
 
-​	 **约束条件7：**球有区别 盒无区别 不允许为空
+ **约束条件7：**球有区别 盒无区别 不允许为空
 
-​		第二类斯特林数 答案为 $S(n,m)=\frac{1}{m!}\sum_{k=0}^{m}(-1)^{k}C(m,k)(m-k)^n$
+​	第二类斯特林数 答案为 $S(n,m)=\frac{1}{m!}\sum_{k=0}^{m}(-1)^{k}C(m,k)(m-k)^n$
 
-​	 **约束条件8：**球有区别 盒无区别 允许为空
+ **约束条件8：**球有区别 盒无区别 允许为空
 
-​		第二类斯特林数 答案为 $S(n,1)+S(n,2)+S(n,3)+..+S(n,min(n,m))$
+​	第二类斯特林数 答案为 $S(n,1)+S(n,2)+S(n,3)+..+S(n,min(n,m))$
 
 
 
 ### 生成函数
 
-​	当 $A(n+k)=C_{1}A(n+k-1)+C_{2}A(n+k-2)+...+C_{k}A(n)$
+当 $A(n+k)=C_{1}A(n+k-1)+C_{2}A(n+k-2)+...+C_{k}A(n)$
 
-​	 ${A(n)}$成为k阶常系数线性递推数列
+ ${A(n)}$成为k阶常系数线性递推数列
 
-​	多项式$x^{k}=C_{1}x^{k-1}+C_{2}x^{k-2}+...+C_{k}$为特征多项式
+多项式$x^{k}=C_{1}x^{k-1}+C_{2}x^{k-2}+...+C_{k}$为特征多项式
 
-​	 $A(n)=d_{1}x_{1}^{n}+d_{2}x_{2}^{n}+...+d_{k}x_{k}^{n}$
+ $A(n)=d_{1}x_{1}^{n}+d_{2}x_{2}^{n}+...+d_{k}x_{k}^{n}$
 
-​	 $d_{1},d_{2},...,d_{k}$为待定系数
+ $d_{1},d_{2},...,d_{k}$为待定系数
 
-​	如果有重根 $x_{1}=x_{2}=x_{3}$ 对应项为 $(d_{1}+d_{2}n+d_{3}n^{2})x_{1}^{n}$
+如果有重根 $x_{1}=x_{2}=x_{3}$ 对应项为 $(d_{1}+d_{2}n+d_{3}n^{2})x_{1}^{n}$
+
 
 ​	
 
-​	斐波那契数列
+斐波那契数列
 
-​		 $S_{n}=f(0)+f(1)+...+f(n)=f(n+2)-1$
+​	 $S_{n}=f(0)+f(1)+...+f(n)=f(n+2)-1$
 
-​		斐波那契数f(n)是偶数当且仅当n能被3整除
+​	斐波那契数f(n)是偶数当且仅当n能被3整除
 
-​		 $f(n)=\frac{1}{\sqrt{5}}(\frac{1+\sqrt{5}}{2})^{n}-\frac{1}{\sqrt{5}}(\frac{1-\sqrt{5}}{2})^{n}$	
+​	 $f(n)=\frac{1}{\sqrt{5}}(\frac{1+\sqrt{5}}{2})^{n}-\frac{1}{\sqrt{5}}(\frac{1-\sqrt{5}}{2})^{n}$	
 
-​		 $f(n)=C(n-1,0)+C(n-2,1)+...+C(n-t,t-1)$   $t=\lfloor\frac{n+1}{2}\rfloor$
+​	 $f(n)=C(n-1,0)+C(n-2,1)+...+C(n-t,t-1)$   $t=\lfloor\frac{n+1}{2}\rfloor$
 
 `
 
-​	 $(1-x)^{-k}=\sum_{n=0}^{\infty}C(k+n-1,k-1)x^{n}$
+ $(1-x)^{-k}=\sum_{n=0}^{\infty}C(k+n-1,k-1)x^{n}$
 
-​	 $(1+x^{1}+x^{2}+...+x^{n-1})^{m}=(\frac{1-x^{n}}{1-x})^{m}=\frac{(1-x^n)^{m}}{(1-x)^{m}}=(1-x^{n})^{m}(1-x)^{-m}$
+ $(1+x^{1}+x^{2}+...+x^{n-1})^{m}=(\frac{1-x^{n}}{1-x})^{m}=\frac{(1-x^n)^{m}}{(1-x)^{m}}=(1-x^{n})^{m}(1-x)^{-m}$
 
-​	 $g_{n}(x)=1(1+x)(1+x+x^{2})...(1+x+x^{2}+...+x^{n-1})=\frac{\prod_{j=1}^{n}(1-x^{j})}{(1-x)^{n}}$
+ $g_{n}(x)=1(1+x)(1+x+x^{2})...(1+x+x^{2}+...+x^{n-1})=\frac{\prod_{j=1}^{n}(1-x^{j})}{(1-x)^{n}}$
 
-​	指数生成函数常用公式
-		 $e^{x}=\sum_{n=0}^{\infty}\frac{x^{n}}{n!}=1+x+\frac{x^2}{2!}+...+\frac{x^{n}}{n!}+...$
+指数生成函数常用公式
+	 $e^{x}=\sum_{n=0}^{\infty}\frac{x^{n}}{n!}=1+x+\frac{x^2}{2!}+...+\frac{x^{n}}{n!}+...$
 
-​		 $g^{(e)}(x)=1+x+\frac{x^{2}}{2!}+\frac{x^{3}}{3!}+...=e^{x}$
+​	 $g^{(e)}(x)=1+x+\frac{x^{2}}{2!}+\frac{x^{3}}{3!}+...=e^{x}$
 
-​		 $g^{(e)}(x)=1-x+\frac{x^2}{2!}-\frac{x^3}{3!}+...=e^{-x}$
+​	 $g^{(e)}(x)=1-x+\frac{x^2}{2!}-\frac{x^3}{3!}+...=e^{-x}$
 
-​		 $g^{(e)}(x)=1+\frac{x^2}{2!}+\frac{x^4}{4!}+\frac{x^6}{6!}+...=\frac{e^x+e^{-x}}{2}$
+​	 $g^{(e)}(x)=1+\frac{x^2}{2!}+\frac{x^4}{4!}+\frac{x^6}{6!}+...=\frac{e^x+e^{-x}}{2}$
 
-​		 $g^{(e)}(x)=x+\frac{x^{3}}{3!}+\frac{x^5}{5!}+\frac{x^7}{7!}+...=\frac{e^x-e^{-x}}{2}$	
+​	 $g^{(e)}(x)=x+\frac{x^{3}}{3!}+\frac{x^5}{5!}+\frac{x^7}{7!}+...=\frac{e^x-e^{-x}}{2}$	
 
-​		 $ln(1+x)=x-\frac{1}{2}x^2+\frac{1}{3}x^3+o(x^3)$
+​	 $ln(1+x)=x-\frac{1}{2}x^2+\frac{1}{3}x^3+o(x^3)$
 
-​		 $sinx=x-\frac{1}{3!}x^3+\frac{1}{5!}x^5+o(x^5)$
+​	 $sinx=x-\frac{1}{3!}x^3+\frac{1}{5!}x^5+o(x^5)$
 
-​		 $arcsinx=x+\frac{1}{2}\times \frac{x^3}{3}+\frac{1\times 3}{2\times 4}\times \frac{x^5}{5}+\frac{1\times 3\times 5}{2\times 4\times 6}\times \frac{x^7}{7}+o(x^7)$
+​	 $arcsinx=x+\frac{1}{2}\times \frac{x^3}{3}+\frac{1\times 3}{2\times 4}\times \frac{x^5}{5}+\frac{1\times 3\times 5}{2\times 4\times 6}\times \frac{x^7}{7}+o(x^7)$
 
-​		 $cosx=1-\frac{1}{2!}x^2+\frac{1}{4!}x^4+o(x^4)$
+​	 $cosx=1-\frac{1}{2!}x^2+\frac{1}{4!}x^4+o(x^4)$
 
-​		 $\frac{1}{1-x}=1+x^2+x^3+o(x^3)$
+​	 $\frac{1}{1-x}=1+x^2+x^3+o(x^3)$
 
-​		 $(1+x)^a=1+\frac{a}{1!}x+\frac{a(a-1)}{2!}x^2+\frac{a(a-1)(a-2)}{3!}x^3+o(x^3)$
+​	 $(1+x)^a=1+\frac{a}{1!}x+\frac{a(a-1)}{2!}x^2+\frac{a(a-1)(a-2)}{3!}x^3+o(x^3)$
 
-​	一道例题：用红黄蓝三色给1*n的棋盘着色，要求红格数是偶数，且至少有一个蓝格的着色方法数
+一道例题：用红黄蓝三色给1*n的棋盘着色，要求红格数是偶数，且至少有一个蓝格的着色方法数
 
-​		 $h_{1}(x)=1+\frac{x^2}{2!}+\frac{x^4}{4!}+\frac{x^6}{6!}+...$
+​	 $h_{1}(x)=1+\frac{x^2}{2!}+\frac{x^4}{4!}+\frac{x^6}{6!}+...$
 
-​		 $h_{2}(x)=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+...$
+​	 $h_{2}(x)=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+...$
 
-​		 $h_{3}(x)=x+\frac{x^2}{2!}+\frac{x^3}{3!}+...$
+​	 $h_{3}(x)=x+\frac{x^2}{2!}+\frac{x^3}{3!}+...$
 
-​		 $g^{(e)}(x)=h_{1}(x)h_{2}(x)h_{3}(x)$
+​	 $g^{(e)}(x)=h_{1}(x)h_{2}(x)h_{3}(x)$
 
-​			      $=(1+\frac{x^2}{2!}+\frac{x^4}{4!}+\frac{x^6}{6!}+...)(1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+...)(x+\frac{x^2}{2!}+\frac{x^3}{3!}+...)$
+​	  $=(1+\frac{x^2}{2!}+\frac{x^4}{4!}+\frac{x^6}{6!}+...)(1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+...)(x+\frac{x^2}{2!}+\frac{x^3}{3!}+...)$ 
 
-​			      $=\frac{e^x+e^{-x}}{2}e^x(e^x-1)=\frac{e^{3x}-e^{2x}+e^x+1}{2}=-\frac{1}{2}+\sum_{n=0}^{\infty}(\frac{3^n-2^n+1}{2})\frac{x^n}{n!}$
+​	 $=\frac{e^x+e^{-x}}{2}e^x(e^x-1)=\frac{e^{3x}-e^{2x}+e^x+1}{2}=-\frac{1}{2}+\sum_{n=0}^{\infty}(\frac{3^n-2^n+1}{2})\frac{x^n}{n!}$
 
-​		 $ans=h_{n}=\frac{3^n-2^n+1}{2}$
+​	 $ans=h_{n}=\frac{3^n-2^n+1}{2}$
+
 
 ​			
 
@@ -529,15 +567,19 @@ void find(LL n,LL c)//大数分解
 
 ### 威尔逊定理
 
-​	当且仅当p为质数，p可整除(p-1)!+1 ，即p|((p-1)!+1)
+当且仅当p为质数，p可整除(p-1)!+1 ，即p|((p-1)!+1)
 
 ### 欧拉定理
 
-​	若a,p为正整数且a,p互质 ，则$a^{φ(p)} \equiv 1 (mod p)$ 
+若a,p为正整数且a,p互质 ，则$a^{φ(p)} \equiv 1 (mod p)$ 
 
 ### 费马小定理
 
-​	若p是质数，则$a^{p-1}\equiv 1 (mod p)$ 
+若p是质数，则$a^{p-1}\equiv 1 (mod p)$ 
+
+### 费马大定理
+
+ $a^n+b^n=c^n$ 当n>2时无整数解
 
 ### 中国剩余定理
 
@@ -717,41 +759,489 @@ void init_mus()
 
 ​		恒等函数的卷积：$I \times I = \sigma_{0} \Leftrightarrow I = \sigma_{0} \times \mu$
 
-​		幂函数的卷积：$ID^{k} \times I = \sigma_{k} \Leftrightarrow ID^{k} = \sigma_{k} \times \mu$ 
+​		幂函数的卷积：$ID^{k} \times I = \sigma_{k} \Leftrightarrow ID^{k} = \sigma_{k} \times \mu$
 
  		若：					 $b(x)b(\frac{n}{x}) = c(n)$
 
 ​		则：			 $(a \cdot b^{k}) \times b^{k} = \sum_{d|n}a(d)b(d)b(\frac{n}{d}) = (a \times I) \cdot c^{k}(n)$
 
-​		另外一种表述：
+​		另外一种表述：g在完全积性条件下：			
 
-​		g在完全积性条件下：		 $(f \cdot g) \times g = (f \times I) \cdot g$
+​					 $(f \cdot g) \times g = (f \times I) \cdot g$	
 
 ​		例子：由				 $ID^{k}(d)ID^{k}(\frac{n}{d}) = ID^{k}(n)$
 
-​		可得：			 $(a \cdot ID^{k}) \times ID^{k} = (a \times I) \cdot ID^{k}$
+​		可得：			 $(a \cdot ID^{k}) \times ID^{k} = (a \times I) \cdot ID^{k}$				 
 
-​						 $(\phi \cdot ID^{k}) \times ID^{k} = (\phi \times I) \cdot ID^{k} = ID \cdot ID^{k} = ID^{k+1}$
+​						 $(\phi \cdot ID^{k}) \times ID^{k} = (\phi \times I) \cdot ID^{k} = ID \cdot ID^{k} = ID^{k+1}$					 
 
-​						 $(\mu \cdot ID^{k}) \times ID^{k} = (\mu \times I) \cdot ID^{k} = e \cdot ID^{k} = e$
+​						 $(\mu \cdot ID^{k}) \times ID^{k} = (\mu \times I) \cdot ID^{k} = e \cdot ID^{k} = e$				 		
 
 ​						 $ID^{k} \times ID^{k} = (I \cdot ID^{k}) \times ID^{k} = (I \times I) \cdot ID^{k} = \sigma_{0} \cdot ID^{k}$
 
 ### 常用转换技巧
 
-​	前n个正整数的约数之和：
+前n个正整数的约数之和：
 
-​		 $\sum_{i=1}^{n}\sigma_{1}(i)=\sum_{i=1}^n\sum_{j=1}^{n}[j|i]*j=\sum_{i=1}^{n}i*\sum_{j=1}^{n}[i|j]=\sum_{i=1}^{n}i\ast \lfloor\frac{n}{i}\rfloor=\sum_{i=1}^{n}\frac{\lfloor\frac{n}{i}\rfloor\ast (\lfloor\frac{n}{i}\rfloor+1)}{2}$
+​	  $\sum_{i=1}^{n}\sigma_{1}(i)=\sum_{i=1}^n\sum_{j=1}^{n}[j|i]*j=\sum_{i=1}^{n}i*\sum_{j=1}^{n}[i|j]=\sum_{i=1}^{n}i\ast \lfloor\frac{n}{i}\rfloor=\sum_{i=1}^{n}\frac{\lfloor\frac{n}{i}\rfloor\ast (\lfloor\frac{n}{i}\rfloor+1)}{2}$
 
-​	前n个正整数的欧拉函数之和：
+前n个正整数的欧拉函数之和：
 
-​		 $\varphi(n)=n-\sum_{d|n,d<n}\varphi(d)$ 	 $\phi(n)=\sum_{i=1}^{n}\varphi(i)$
+​	 $\varphi(n)=n-\sum_{d|n,d<n}\varphi(d)$ 	 $\phi(n)=\sum_{i=1}^{n}\varphi(i)$
 
-​		 $\phi(n)=\sum_{i=1}^{n}\varphi(i)=\sum_{i=1}^{n}(i-\sum_{d|i,d<i}\varphi(d))=\frac{n*(n+1)}{2}-\sum_{i=2}^{n}\sum_{d|i,d<i}\varphi(i)$
+​	 $\phi(n)=\sum_{i=1}^{n}\varphi(i)=\sum_{i=1}^{n}(i-\sum_{d|i,d<i}\varphi(d))=\frac{n*(n+1)}{2}-\sum_{i=2}^{n}\sum_{d|i,d<i}\varphi(d)$
 
-​			 $=\frac{n*(n+1)}{2}-\sum_{i=2}^{n}\sum_{d=1}^{\lfloor\frac{n}{i}\rfloor}\varphi(d)=\frac{n*(n+1)}{2}-\sum_{i=2}^{n}\phi(\lfloor\frac{n}{i}\rfloor)$
+​	   	  $=\frac{n*(n+1)}{2}-\sum_{i=2}^{n}\sum_{d=1}^{\lfloor\frac{n}{i}\rfloor}\varphi(d)=\frac{n*(n+1)}{2}-\sum_{i=2}^{n}\phi(\lfloor\frac{n}{i}\rfloor)$
 
-​		 $\sum_{i=1}^{n}\phi(\lfloor\frac{n}{i}\rfloor)=\frac{n*(n+1)}{2}$
+   $\frac{n*(n+1)}{2}=\sum_{i}^{n}i=\sum_{i=1}^{n}\sum_{d|i}\varphi(d)=\sum_{\frac{i}{d}=1}^{n}\sum_{d=1}^{\lfloor\frac{n}{\frac{i}{d}}\rfloor}\varphi(d)=\sum_{i=1}^{n}\phi(\lfloor\frac{n}{i}\rfloor)$ 
+
+前n个正整数的莫比乌斯函数之和（梅滕斯函数）：
+
+ $1=\sum_{i=1}^{n}[i=1]=\sum_{i=1}^{n}\sum_{d|i}\mu(d)=\sum_{i=1}^{n}\sum_{d=1}^{\lfloor\frac{n}{i}\rfloor}\mu(d)=\sum_{i=1}^{n}M(\lfloor\frac{n}{i}\rfloor)$
+
+ $M(n)=1-\sum_{i=2}^{n}M(\lfloor\frac{n}{i}\rfloor)$
+
+### FFT （快速傅里叶变换）
+
+```c++
+#define L(x) (1 << (x))
+const double PI = acos(-1.0);
+const int N = 2e5+5;
+double ax[N],ay[N],bx[N],by[N];
+int revv(int x, int bits)
+{
+    int ret=0;
+    for(int i=0;i<bits;i++){ret<<=1;ret|=x&1;x>>=1;}
+    return ret;
+}
+void fft(double * a, double * b, int n, bool rev)
+{
+    int bits=0;
+    while((1<<bits)<n)++bits;
+    for(int i=0;i<n;i++){
+        int j=revv(i,bits);
+        if(i<j)swap(a[i],a[j]),swap(b[i],b[j]);
+    }
+    for(int len=2;len<=n;len<<=1){
+        int half=len>>1;
+        double wmx=cos(2*PI/len),wmy=sin(2*PI/len);
+        if(rev)wmy=-wmy;
+        for(int i=0;i<n;i+=len){
+            double wx=1,wy=0;
+            for(int j=0;j<half;j++){
+                double cx=a[i+j],cy=b[i+j];
+                double dx=a[i+j+half],dy=b[i+j+half];
+                double ex=dx*wx-dy*wy,ey=dx*wy+dy*wx;
+                a[i+j]=cx+ex,b[i+j]=cy+ey;
+                a[i+j+half]=cx-ex,b[i+j+half]=cy-ey;
+                double wnx=wx*wmx-wy*wmy,wny=wx*wmy+wy*wmx;
+                wx=wnx,wy=wny;
+            }
+        }
+    }
+    if(rev){for(int i=0;i<n;i++) a[i]/=n,b[i]/=n;}
+}
+int solve(int a[],int na,int b[],int nb,int ans[]) //两个数组求卷积,有时ans数组要开成long long
+{
+    int len=max(na,nb),ln;
+    for(ln=0;L(ln)<len;++ln);
+    len=L(++ln);
+    for(int i=0;i<len;++i){
+        if(i>=na)ax[i]=0,ay[i]=0;
+        else ax[i]=a[i],ay[i]=0;
+    }
+    fft(ax,ay,len,0);
+    for(int i=0;i<len;++i){
+        if(i>=nb) bx[i]=0,by[i]=0;
+        else bx[i]=b[i],by[i]=0;
+    }
+    fft(bx,by,len,0);
+    for(int i=0;i<len;++i){
+        double cx=ax[i]*bx[i]-ay[i]*by[i];
+        double cy=ax[i]*by[i]+ay[i]*bx[i];
+        ax[i]=cx,ay[i]=cy;
+    }
+    fft(ax,ay,len,1);
+    for(int i=0;i<len;++i) ans[i]=(int)(ax[i]+0.5);
+    return len;
+}
+```
+
+### NTT （快速数论变换）
+
+```C++
+//选好素数
+const int M = 22;
+ll G=3,P=998244353,wn[M];//P=7*2^26+1，M=k-1
+ll modexp(ll a,ll b,ll p){
+    ll ans=1LL;a%=p;
+    while(b){if(b&1)ans=ans*a%p;b>>=1;a=a*a%p;}
+    return ans;
+}
+void getwn(){for(int i=0;i<M;i++) wn[i]=modexp(G,(P-1)/(1<<i),P);}//!!!记得用
+void NTT(ll x[],int n,int rev) {
+    int i,j,k,ds;ll w,u,v;
+    for(i=1,j=n>>1,k=n>>1;i<n-1;i++,k=n>>1){
+        if(i<j)swap(x[i],x[j]);
+        while(j>=k){j-=k;k>>=1;}
+        if(j<k)j+=k;
+    }
+    for(i=2,ds=1;i<=n;i<<=1,ds++)
+        for(j=0;j<n;j+=i){
+            w=1;
+            for(k=j;k<j+i/2;k++){
+                u=x[k]%P;v=w*x[k+i/2]%P;
+                x[k]=(u+v)%P;
+                x[k+i/2]=(u-v+P)%P;
+                w=w*wn[ds]%P;
+            }
+        }
+    if(rev==-1){
+        for(i=1;i<n/2;i++) swap(x[i],x[n-i]);
+        w=modexp(n,P-2,P);
+        for(i=0;i<n;i++) x[i]=x[i]*w%P;
+    }
+}
+int solve(ll a[],int lena,ll b[],int lenb) {//结果在a数组
+    int n=1;
+    while (n<lena+lenb) n<<=1;
+    for(int i=lena;i<n;i++)a[i]=0;
+    for(int i=lenb;i<n;i++)b[i]=0;
+    NTT(a,n,1);NTT(b,n,1);
+    for (int i=0;i<n;i++) a[i]=a[i]*b[i]%P;
+    NTT(a,n,-1);
+    return n;
+} 
+```
+
+### 三模数NTT所需函数
+
+```
+inline ll mul(ll a,ll b,ll mod){
+    a%=mod;b%=mod;
+    return ((a*b-(ll)((ll)((long double)a/mod*b+1e-3)*mod))%mod+mod)%mod;
+}
+ll modexp(ll a,ll b,ll p)
+{
+    ll ans=1LL;a%=p;
+    while(b){if(b&1)ans=ans*a%p;b>>=1;a=a*a%p;}
+    return ans;
+}
+ll M[]={998244353,1004535809,469762049};
+ll _M=(ll)M[0]*M[1];
+ll m1=M[0],m2=M[1],m3=M[2];
+ll inv1=modexp(m1%m2,m2-2,m2),inv2=modexp(m2%m1,m1-2,m1),inv12=modexp(_M%m3,m3-2,m3);
+inline int CRT(int a1,int a2,int a3){//注意顺序
+    ll A=(mul((ll)a1*m2%_M,inv2,_M)+mul((ll)a2*m1%_M,inv1,_M))%_M;
+    ll k=((ll)a3+m3-A%m3)*inv12%m3;
+    return (k*(_M%P)+A)%P;
+}
+```
+
+
+
+### NTT 素数表
+
+如果模数P 任意，取的模数必须超过n(P-1)^2 ，可以取多个模数（乘积>n(P-1)^2）做NTT。再用中国剩余定理合并,每次NTT转化为三个NTT再合并即可
+
+```
+
+r⋅2^k+1	r	k	g
+3	1	1	2
+5	1	2	2
+17	1	4	3
+97	3	5	5
+193	3	6	5
+257	1	8	3
+7681	15	9	17
+12289	3	12	11
+40961	5	13	3
+65537	1	16	3
+786433	3	18	10
+5767169	11	19	3
+7340033	7	20	3
+23068673	11	21	3
+104857601	25	22	3
+167772161	5	25	3
+469762049	7	26	3
+998244353	119	23	3
+1004535809	479	21	3
+2013265921	15	27	31
+2281701377	17	27	3
+3221225473	3	30	5
+75161927681	35	31	3
+77309411329	9	33	7
+206158430209	3	36	22
+2061584302081	15	37	7
+2748779069441	5	39	3
+6597069766657	3	41	5
+39582418599937	9	42	5
+79164837199873	9	43	5
+263882790666241	15	44	7
+1231453023109121	35	45	3
+1337006139375617	19	46	3
+3799912185593857	27	47	5
+4222124650659841	15	48	19
+7881299347898369	7	50	6
+31525197391593473	7	52	3
+180143985094819841	5	55	6
+1945555039024054273	27	56	5
+4179340454199820289	29	57	3
+```
+
+### 多项式开方、求逆、积分、求exp、求ln、求幂
+
+多项式求逆： $B(x)=2G(x)-A(x)G^2(x) (mod x^n)$
+
+多项式开方： $B(x)=\frac{A(x)+G^2(x)}{2G(x)} (mod x^n)$
+
+​		 $G(x)=(1+ln(1+\frac{1}{exp(\lmoustache \frac{1}{\sqrt{F(x)}})}))^k$ 
+
+```
+//给定F(x) 求G'(x)
+# include <bits/stdc++.h>
+# define RG register
+# define IL inline
+# define Fill(a, b) memset(a, b, sizeof(a))
+using namespace std;
+typedef long long ll;
+
+IL int Input(){
+    RG int x = 0, z = 1; RG char c = getchar();
+    for(; c < '0' || c > '9'; c = getchar()) z = c == '-' ? -1 : 1;
+    for(; c >= '0' && c <= '9'; c = getchar()) x = (x << 1) + (x << 3) + (c ^ 48);
+    return x * z;
+}
+
+const int maxn(8e5 + 5);
+const int mod(998244353);
+const int phi(998244352);
+const int inv2(499122177);
+const int g(3);
+
+int a[maxn], b[maxn], c[maxn], d[maxn], r[maxn];
+
+IL int Pow(RG ll x, RG ll y){
+    RG ll ret = 1;x%=mod;
+    for(; y; y >>= 1, x = x * x % mod)
+        if(y & 1) ret = ret * x % mod;
+    return ret;
+}
+IL void NTT(RG int *p, RG int m, RG int opt){
+    RG int n = 1, l = 0;
+    for(; n < m; n <<= 1) ++l;
+    for(RG int i = 0; i < n; ++i) r[i] = (r[i >> 1] >> 1) | ((i & 1) << (l - 1));
+    for(RG int i = 0; i < n; ++i) if(r[i] < i) swap(p[i], p[r[i]]);
+    for(RG int i = 1; i < n; i <<= 1){
+        RG int t = i << 1, wn = Pow(g, phi / t);
+        if(opt == -1) wn = Pow(wn, mod - 2);
+        for(RG int j = 0; j < n; j += t)
+            for(RG int k = 0, w = 1; k < i; ++k, w = 1LL * w * wn % mod){
+                RG int x = p[k + j], y = 1LL * w * p[k + j + i] % mod;
+                p[k + j] = (x + y) % mod, p[k + j + i] = (x - y + mod) % mod;
+            }
+    }
+    if(opt == -1){
+        RG int inv = Pow(n, mod - 2);
+        for(RG int i = 0; i < n; ++i) p[i] = 1LL * p[i] * inv % mod;
+    }
+}
+IL void Inv(RG int *p, RG int *q, RG int len){//多项式求逆,p为A(x)，q为G(x)
+    if(len == 1){
+        q[0] = Pow(p[0], mod - 2);
+        return;
+    }
+    Inv(p, q, len >> 1);
+    for(RG int i = 0; i < len; ++i) a[i] = p[i], b[i] = q[i];
+    RG int tmp = len << 1;
+    NTT(a, tmp, 1), NTT(b, tmp, 1);
+    for(RG int i = 0; i < tmp; ++i) a[i] = 1LL * a[i] * b[i] % mod * b[i] % mod;
+    NTT(a, tmp, -1);
+    for(RG int i = 0; i < len; ++i) q[i] = ((2 * q[i] - a[i]) % mod + mod) % mod;
+    for(RG int i = 0; i < tmp; ++i) a[i] = b[i] = 0;
+}
+IL void Sqrt(RG int *p, RG int *q, RG int len){//多项式开方,p为A(x),q为G(x)
+    if(len == 1){
+        q[0] = sqrt(p[0]); //???
+        return;
+    }
+    Sqrt(p, q, len >> 1), Inv(q, c, len);   
+    RG int tmp = len << 1;
+    for(RG int i = 0; i < len; ++i) a[i] = p[i];
+    NTT(a, tmp, 1), NTT(c, tmp, 1);
+    for(RG int i = 0; i < tmp; ++i) a[i] = 1LL * a[i] * c[i] % mod;
+    NTT(a, tmp, -1);
+    for(RG int i = 0; i < len; ++i) q[i] = 1LL * (q[i] + a[i]) % mod * inv2 % mod;
+    for(RG int i = 0; i < tmp; ++i) a[i] = c[i] = 0;
+}
+IL void ICalc(RG int *p, RG int *q, RG int len){//多项式求导
+    q[len - 1] = 0;
+    for(RG int i = 1; i < len; ++i) q[i - 1] = 1LL * p[i] * i % mod;
+}
+IL void Calc(RG int *p, RG int *q, RG int len){//多项式积分
+    q[0] = 0;
+    for(RG int i = 1; i < len; ++i) q[i] = 1LL * Pow(i, mod - 2) * p[i - 1] % mod;
+}
+IL void Ln(RG int *p, RG int *q, RG int len){//多项式求ln
+    Inv(p, c, len), ICalc(p, a, len);
+    RG int tmp = len << 1;
+    NTT(c, tmp, 1), NTT(a, tmp, 1);
+    for(RG int i = 0; i < tmp; ++i) c[i] = 1LL * c[i] * a[i] % mod;
+    NTT(c, tmp, -1), Calc(c, q, len);
+    for(RG int i = 0; i < tmp; ++i) a[i] = c[i] = 0;
+}
+IL void Exp(RG int *p, RG int *q, RG int len){//多项式求exp
+    if(len == 1){
+        q[0] = 1;
+        return;
+    }
+    Exp(p, q, len >> 1), Ln(q, b, len);
+    for(RG int i = 0; i < len; ++i) b[i] = (mod - b[i] + p[i]) % mod, c[i] = q[i];
+    b[0] = (b[0] + 1) % mod;
+    RG int tmp = len << 1;
+    NTT(b, tmp, 1), NTT(c, tmp, 1);
+    for(RG int i = 0; i < tmp; ++i) b[i] = 1LL * b[i] * c[i] % mod;
+    NTT(b, tmp, -1);
+    for(RG int i = 0; i < len; ++i) q[i] = b[i];
+    for(RG int i = 0; i < tmp; ++i) b[i] = c[i] = 0;
+}
+IL void CalcPow(RG int *p, RG int *q, RG int len, RG int y){//多项式求幂
+    Ln(p, d, len);
+    for(RG int i = 0; i < len; ++i) d[i] = 1LL * d[i] * y % mod;
+    Exp(d, q, len);
+    for(RG int i = 0; i < len; ++i) d[i] = 0;
+}
+int f[maxn], h[maxn], n, k, len;
+
+IL void Record(){
+    for(RG int i = 0; i < len; ++i) f[i] = h[i], h[i] = 0;
+}
+int main(){
+    freopen("polynomial.in", "r", stdin);
+    freopen("polynomial.out", "w", stdout);
+    n = Input() - 1, k = Input();
+    for(RG int i = 0; i <= n; ++i) f[i] = Input();
+    for(len = 1; len <= n; len <<= 1);
+    Sqrt(f, h, len), Record();
+    Inv(f, h, len), Record();
+    Calc(f, h, n + 1), Record();
+    Exp(f, h, len), Record();
+    Inv(f, h, len), Record();
+    f[0] = (f[0] + 1) % mod;
+    Ln(f, h, len), Record();
+    f[0] = (f[0] + 1) % mod;
+    CalcPow(f, h, len, k), Record();
+    ICalc(f, h, n + 1);
+    for(RG int i = 0; i <= n; ++i) printf("%d ", h[i]);
+    return 0;
+}
+```
+
+### 多项式除法及取模（待补）
+
+
+
+### BSGS算法（求最小的x满足 a^x = b (mod n) n为质数）
+
+```
+const int MOD = 76543;
+int hs[MOD],head[MOD],Next[MOD],id[MOD],top;
+void insert(int x,int y)
+{
+    int k = x%MOD;
+    hs[top] = x, id[top] = y, Next[top] = head[k], head[k] = top++;
+}
+int find(int x)
+{
+    int k = x%MOD;
+    for(int i = head[k]; i != -1; i = Next[i])
+        if(hs[i] == x)
+            return id[i];
+    return -1;
+}
+int BSGS(int a,int b,int n)//a^x = b(mod n)
+{
+	a%=n;b%=n;
+    memset(head,-1,sizeof(head));
+    top = 1;
+    if(b == 1)return 0;
+    int m = sqrt(n*1.0), j;
+    long long x = 1, p = 1;
+    for(int i = 0; i < m; ++i, p = p*a%n)insert(p*b%n,i);
+    for(long long i = m; ;i += m)
+    {
+        if( (j = find(x = x*p%n)) != -1 )return i-j;
+        if(i > n)break;
+    }
+    return -1;
+}
+```
+
+### ex_BSGS算法 （n不为质数）
+
+```c++
+const int N = 1e5+3;//一定为素数
+ll point[N*2],Next[N*2],val[N*2],pla[N*2],tot;
+void add(ll x,ll y){
+    ll xx=x%N;
+    Next[++tot]=point[xx];
+    val[tot]=x;
+    pla[tot]=y;
+    point[xx]=tot;
+}
+ll find(ll x){
+    ll i;
+    ll xx=x%N;
+    for (i=point[xx];i;i=Next[i]){
+        if (val[i]==x)return pla[i];
+    }
+    return -1;
+}
+ll gcd(ll a,ll b){
+    return b==0?a:gcd(b,a%b);
+}
+ll qpow(ll a,ll b,ll mod){
+    ll ans;
+    for (ans=1;b;a=a*a%mod,b>>=1){
+        if (b&1)ans=ans*a%mod;
+    }
+    return ans;
+}
+ll ex_BSGS(ll a,ll b,ll p){// a^x = b (mod p) 
+    a%=p;b%=p;
+    ll i;
+    if (b==1)return 0;
+    ll t=gcd(a,p),d=1,k=0;
+    while (t!=1){
+        if (b%t)return -1;
+        b/=t;
+        p/=t;
+        d=d*(a/t)%p;
+        k++;
+        if (b==d)return k;
+        t=gcd(a,p);
+    }
+    memset (point,0,sizeof(point));
+    memset (Next,0,sizeof(Next));
+    tot=0;
+    ll m=ceil(sqrt(p));
+    ll am=qpow(a,m,p);
+    ll mul=b;
+    add(mul,0);
+    for (i=1;i<=m;i++){
+        mul=mul*a%p;
+        add(mul,i);
+    }
+    for (i=1;i<=m+1;i++){
+        d=d*am%p;
+        ll place=find(d);
+        if (place!=-1)return i*m-place+k;
+    }
+    return -1;
+}
+```
+
+
 
 
 
@@ -823,37 +1313,37 @@ int SG_dfs(int x)
 
 ### 巴什博奕 
 
-​	只有一堆n个物品，两个人轮流从中取物，规定每次最少取一个，最多取m个，最后取光者为胜
+只有一堆n个物品，两个人轮流从中取物，规定每次最少取一个，最多取m个，最后取光者为胜
 
 答案：先手必败 n%(m+1)=0
 
 ### 威佐夫博弈
 
-​	有两堆各若干的物品，两人轮流从其中一堆取至少一件物品，至多不限，或从两堆中同时取相同件物品，规定最后取完者胜利。
+有两堆各若干的物品，两人轮流从其中一堆取至少一件物品，至多不限，或从两堆中同时取相同件物品，规定最后取完者胜利。
 
 答案：若两堆物品的初始值为（x，y），且x<y，则另z=y-x；记w=（int）[（（sqrt（5）+1）/2）\*z  ]；若w=x，则先手必败，否则先手必胜。
 
 ### 斐波那契博弈
 
-​	有一堆物品，两人轮流取物品，先手最少取一个，至多无上限，但不能把物品取完，之后每次取的物品数不能超过上一次取的物品数的二倍且至少为一件，取走最后一件物品的人获胜。
+有一堆物品，两人轮流取物品，先手最少取一个，至多无上限，但不能把物品取完，之后每次取的物品数不能超过上一次取的物品数的二倍且至少为一件，取走最后一件物品的人获胜。
 
-​	答案：先手胜当且仅当n不是斐波那契数
+答案：先手胜当且仅当n不是斐波那契数
 
 ### 取走-分割游戏
 
-​	Lasker’s Nim游戏：每一轮允许两种操作之一。（1）从一堆石子中取走任意多个（2）将一堆数量不少于2的石子分成都不为空的两堆。 
+Lasker’s Nim游戏：每一轮允许两种操作之一。（1）从一堆石子中取走任意多个（2）将一堆数量不少于2的石子分成都不为空的两堆。 
 
 答案：对于所有的k>=0，有g(4k+1)=4k+1；g(4k+2)=4k+2；g(4k+3)=4k+4；g(4k+4)=4k+3。 
 
 ### POJ 1740
 
-​	有N堆石子，两人轮流进行操作，每一次为“操作者指定一堆石子，先从中扔掉一部分（至少一颗，可以全部扔掉），然后可以将该堆剩下的石子中的任意多颗任意移到其他未取完的堆中”，操作者无法完成操作时为负。 
+有N堆石子，两人轮流进行操作，每一次为“操作者指定一堆石子，先从中扔掉一部分（至少一颗，可以全部扔掉），然后可以将该堆剩下的石子中的任意多颗任意移到其他未取完的堆中”，操作者无法完成操作时为负。 
 
 答案：必败态的条件为“堆数为偶数（不妨设为2N），并且可以分为两两相等的N对” 
 
 ### 阶梯博弈
 
-​	从左到右有一排石子，给出石子所在的位置。规定每个石子只能向左移动，且不能跨过前面的石子。最左边的石子最多只能移动到1位置。每次选择一个石子按规则向左移动，问先手是否能赢。 
+从左到右有一排石子，给出石子所在的位置。规定每个石子只能向左移动，且不能跨过前面的石子。最左边的石子最多只能移动到1位置。每次选择一个石子按规则向左移动，问先手是否能赢。 
 
 答案：我们把棋子按位置升序排列后，从后往前把他们两两绑定成一对。如果总个数是奇数，就把最前面一个和边界（位置为0）绑定。 在同一对棋子中，如果对手移动前一个，你总能对后一个移动相同的步数，所以一对棋子的前一个和前一对棋子的后一个之间有多少个空位置对最终的结果是没有影响的。 于是我们只需要考虑同一对的两	个棋子之间有多少空位。 这样一来就成了N堆取石子游戏了. 
 
@@ -1995,4 +2485,647 @@ int work()
 	return ans;
 }
 ```
+
+## 字符串相关
+
+### 最长公共子序列（LCS）
+
+	随机数据可以建图dp
+
+```
+for(int i=1;i<=n;i++){
+		for(int j=1;j<=m;j++){
+			if(a[i]==b[j])dp[i][j]=dp[i-1][j-1]+1;
+			else dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+		}
+	}
+	stack<char>stk;int i=n,j=m;
+	while(i&&j){
+		if(a[i]==b[j]){stk.push(a[i]);i--;j--;
+		}else if(dp[i][j]==dp[i-1][j])i--;
+		else j--;
+	}
+```
+
+
+
+### KMP算法
+
+	KMP最小循环节、循环周期
+	
+		对于next数组中的i，符合i%(i-next[i])==0&&next[i]!=0，则字符串[0,...,i-1]循环
+	
+		循环节长度：i-next[i]  			循环次数：i/(i-next[i])
+	
+		补全成循环串最少需要字符数：i-next[i]-i%(i-next[i])
+
+```c++
+void getfill(char *s,int len)
+{
+    memset(Next,0,sizeof(Next));
+    for(int i=1;i<len;i++){
+        int j=Next[i];
+        while(j&&s[i]!=s[j])j=Next[j];
+        Next[i+1]=(s[i]==s[j])?j+1:0;
+    }
+}
+int sum(char *s,int lens,char *t,int lent)
+{
+    int j=0,cnt=0;
+    for(int i=0;i<lent;i++){
+        while(j&&t[i]!=s[j])j=Next[j];
+        if(t[i]==s[j])j++;
+        if(j==lens)cnt++;
+    }return cnt;
+}
+```
+
+### 后缀数组
+
+后缀数组sa[i]表示排名为i的后缀的起始位置的下标
+
+映射数组rk[i]表示起始位置的下标为i的后缀的排名
+
+辅助工具：最长公共前缀LCP
+
+​	定义LCP(i,j)为suff(sa[i])与suff(sa[j])的最长公共前缀
+
+定理：	
+
+​	 $LCP(i,j)=LCP(j,i)$
+
+​	 $LCP(i,i)=len(sa[i])=n-sa[i]+1$
+
+​	 $LCP(i,k)=min(LCP(i,j),LCP(j,k)) 1<=i<=j<=k<=n$
+
+​	 $LCP(i,k)=min(LCP(j,j-1)) 1<=i<j<=k<=n$
+
+设height[i]为LCP(i,i-1)  1<i<=n	height[1]=0
+
+则$LCP(i,k)=min(height[j])	i<j<=k$
+
+应用：
+
+​	最长公共子串：两个字符串拼起来找符合条件的最大的height[i]
+
+```c++
+int s[N],sa[N],sa2[N],rk[N],cnt[N],height[N];
+bool same(int *rank, int idx1, int idx2, int len)
+{
+    return rank[idx1]==rank[idx2] && rank[idx1+len]==rank[idx2+len];
+}
+// s:输入字符串的末尾要补一个 '0' , n是字符串的实际长度+1. 
+//m: 单字符rank的范围, 辅助变量[0,m)
+void SA(int *s, int *sa, int *sa2, int *rk, int *cnt, int *hgt, int n, int m)
+{
+    for(int i=0; i<m; i++) cnt[i]=0;
+    for(int i=0; i<n; i++) cnt[rk[i]=s[i]]++;
+    for(int i=1; i<m; i++) cnt[i]+=cnt[i-1];
+    for(int i=n-1; i>=0; i--) sa[--cnt[rk[i]]]=i;
+    for(int len=1; len<n; len*=2){
+       int p=0;
+        for(int i=n-len; i<n; i++) sa2[p++]=i;   
+        for(int i=0; i<n; i++) 
+            if(sa[i]>=len) 
+                sa2[p++]=sa[i]-len;
+        for(int i=0; i<m; i++) cnt[i]=0;
+        for(int i=0; i<n; i++) cnt[rk[i]]++;
+        for(int i=1; i<m; i++) cnt[i]+=cnt[i-1];
+        for(int i=n-1; i>=0; i--) 
+            sa[--cnt[rk[sa2[i]]]]=sa2[i];
+        swap(rk, sa2);
+        rk[sa[0]]=0;
+        for(int i=1; i<n; i++)
+            rk[sa[i]]=rk[sa[i-1]]+!same(sa2, sa[i-1], sa[i], len);
+        m=rk[sa[n-1]]+1;
+        if(m==n) break;
+    }
+    for(int i=0, j, lcp=0; i<n-1; i++){
+        lcp?--lcp:0;
+        j=sa[rk[i]-1];    
+        for(; s[j+lcp]==s[i+lcp]; lcp++);
+        hgt[rk[i]]=lcp;
+    }  
+}
+```
+
+### 后缀自动机（待补）
+
+	后缀自动机DAWG(s)中后缀链接组成的树就是后缀树ST(rev(s)) 
+	
+	Next形成的DAG图中，每条从st[0]开始的路径形成的子串都是原串本质不同的子串的集合元素之一，且两者相等
+
+```
+struct state{
+    int len,link,Next[30];
+};
+const int MAXLEN = 1e5+5;
+state st[MAXLEN*2];
+int sz,last;
+void sa_init()
+{
+    sz=last=0;
+    st[0].len=0;
+    st[0].link=-1;
+    ++sz;
+    for(int i=0;i<MAXLEN*2;i++) memset(st[i].Next,0,sizeof(st[i].Next));
+}
+void sa_extend(char c)
+{
+    int cur=sz++;
+    st[cur].len=st[last].len+1;
+    int p;
+    for(p=last;p!=-1&&!st[p].Next[c-'a'];p=st[p].link) st[p].Next[c-'a']=cur;
+    if(p==-1)st[cur].link=0;
+    else{
+        int q=st[p].Next[c-'a'];
+        if(st[p].len+1==st[q].len) st[cur].link=q;
+        else{
+            int clone=sz++;
+            st[clone].len=st[p].len+1;
+            memcpy(st[clone].Next,st[q].Next,sizeof(st[q].Next));
+            st[clone].link=st[q].link;
+            for(;p!=-1&&st[p].Next[c-'a']==q;p=st[p].link) st[p].Next[c-'a']=clone;
+            st[q].link=st[cur].link=clone;
+        }
+    }
+    last=cur;
+}
+```
+
+#### 两个字符串的最长子串
+
+```
+pair<int,int> lcs(char *s,int lens,char *t,int lent)//return {len,pos(t)}
+{
+    sa_init();
+    for(int i=0;i<lens;i++) sa_extend(s[i]);
+    int v=0,l=0,best=0,bestpos=0;
+    for(int i=0;i<lent;i++){
+        while(v&&!st[v].Next[t[i]-'a']){v=st[v].link;l=st[v].len;}    
+        if(st[v].Next[t[i]-'a']){v=st[v].Next[t[i]-'a'];l++;}
+        if(l>best)best=l,bestpos=i;
+    }
+    return {best,bestpos-best+1};
+}
+```
+
+#### 本质不同的字符串个数
+
+	每次增加一个字符所产生的贡献cnt是节点的len减去失配节点的len,每次有新节点或节点都要相应增减贡献
+
+```
+void sa_extend(char c)
+{
+    ...
+    if(p==-1)st[cur].link=0,cnt+=st[cur].len;
+    else{
+        ...
+        if(st[p].len+1==st[q].len) st[cur].link=q,cnt+=st[cur].len-st[q].len;
+        else{
+			...
+            st[clone].link=st[q].link;
+            cnt+=st[clone].len-st[st[clone].link].len;
+            for(;p!=-1&&st[p].Next[c-'a']==q;p=st[p].link) st[p].Next[c-'a']=clone;
+            cnt-=st[q].len-st[st[q].link].len;
+            st[q].link=st[cur].link=clone;
+            cnt+=st[q].len+st[cur].len-2*st[clone].len;
+        }
+    }
+    last=cur;
+}
+```
+
+#### 本质不同的字符串长度之和
+
+	对DAG图dp即可
+
+#### 字典序第k小本质不同子串
+
+	就是求字典序第k小路径，对DAG图dp后即可逐位确定答案
+
+```
+//预处理每个节点的cnt代表该节点下有多少个子节点也就是多少个子串
+int id[N],num[N];
+long long cnt[N];
+void diff(int u)
+{
+    memset(num,0,sizeof(num));
+    for(int i=1;i<sz;i++)num[st[i].len]++;
+    for(int i=1;i<sz;i++)num[i]+=num[i-1];
+    for(int i=1;i<sz;i++)id[num[st[i].len]--]=i;
+    for(int i=sz-1;i>=0;i--){
+        int now=id[i];
+        cnt[now]=1;
+        for(int j=0;j<30;j++){
+            if(st[now].Next[j])
+                cnt[now]+=cnt[st[now].Next[j]];
+        }
+    }
+}
+```
+
+
+
+#### 一个串出现几次 
+
+	每次新增一个点就在后缀树上将从根到该节点的路径上加一，节点值就是从st[0]到该点所形成子串的出现次数，用LCT维护可做到在线
+
+#### 最小循环移位
+
+	给定字符串S，找到和它循环同构的字典序最小字符串
+	
+	解法：对S+S建立自动机后找字典序最小长度为len(S)的路径，贪心即可
+
+### 序列自动机（待补）
+
+## 树相关（待补）
+
+### 树链剖分
+
+```c++
+int sz[N],top[N],son[N],dep[N],fa[N],id[N],rid[N],cnt;//区间[1,]
+void init(){
+    cnt=1;
+    memset(son,0,sizeof(son));
+}
+void dfs1(int u,int father,int depth){
+    dep[u]=depth;fa[u]=father;sz[u]=1;
+    for(int i=head[u];i;i=edg[i].next){
+        int v=edg[i].to;
+        if(v!=fa[u]){
+            dfs1(v,u,depth+1);
+            sz[u]+=sz[v];
+            if(!son[u]||sz[v]>sz[son[u]])son[u]=v;
+        }
+    }
+}
+void dfs2(int u,int t){
+    top[u]=t;id[u]=cnt;rid[cnt]=u;cnt++;
+    if(!son[u])return;
+    dfs2(son[u],t);
+    for(int i=head[u];i;i=edg[i].next){
+        int v=edg[i].to;
+        if(v!=son[u]&&v!=fa[u])dfs2(v,v);
+    }
+
+}
+ll query_path(int x,int y){
+    ll ans=0;
+    int fx=top[x],fy=top[y];
+    while(fx!=fy){
+        if(dep[fx]>=dep[fy]){
+            ans+=query(1,1,n,id[fx],id[x]);
+            x=fa[fx];
+        }else{
+            ans+=query(1,1,n,id[fy],id[y]);
+            y=fa[fy];
+        }
+        fx=top[x],fy=top[y];      
+    }
+    if(x!=y){
+        if(id[x]<id[y]) ans+=query(1,1,n,id[x],id[y]);
+        else ans+=query(1,1,n,id[y],id[x]);
+    }else  ans+=query(1,1,n,id[x],id[y]);
+    return ans;
+}
+void update_path(int x,int y,int value){
+    int fx=top[x],fy=top[y];
+    while(fx!=fy){
+        if(dep[fx]>dep[fy]){
+            update(1,1,n,id[fx],id[x],value);
+            x=fa[fx];
+        }else{
+            update(1,1,n,id[fy],id[y],value);
+            y=fa[fy];
+        }
+        fx=top[x],fy=top[y];
+    }
+    if(x!=y){
+        if(id[x]<id[y])update(1,1,n,id[x],id[y],value);
+        else update(1,1,n,id[y],id[x],value);
+    }else update(1,1,n,id[x],id[y],value);  
+}
+```
+
+### 左偏树
+
+### splay
+
+```
+const int N=200005, inf=0x3f3f3f3f;
+
+typedef struct splaynode* node;
+struct splaynode {
+    node pre, ch[2];
+    ll value, lazy, min, sum;
+    int size, rev;
+    void init(int _value) {
+        pre=ch[0]=ch[1]=NULL;
+        min=value=sum=_value;
+        lazy=rev=0;
+        size=1;
+    }
+}mem[N];
+int memtop;
+stack<node> S;
+node root;
+inline int getsize(node &x) {
+    return x ? x->size : 0;
+}
+void pushdown(node &x) {
+    if (!x) return;
+    if (x->lazy) {
+        ll w = x->lazy;
+        x->value += w;
+        if (x->ch[0]) {
+            x->ch[0]->lazy += w;
+            x->ch[0]->min += w;
+            x->ch[0]->sum += w*getsize(x->ch[0]);
+        }
+        if (x->ch[1]) {
+            x->ch[1]->lazy += w;
+            x->ch[1]->min += w;
+            x->ch[1]->sum += w*getsize(x->ch[1]);
+        }
+        x->lazy = 0;
+    }
+    if (x->rev) {
+        node t = x->ch[0];
+        x->ch[0] = x->ch[1];
+        x->ch[1] = t;
+        x->rev = 0;
+        if (x->ch[0]) x->ch[0]->rev ^= 1;
+        if (x->ch[1]) x->ch[1]->rev ^= 1;
+    }
+}
+void update(node &x) {
+    if (!x) return;
+    x->size = 1;
+    x->min = x->value;
+    x->sum = x->value;
+    if (x->ch[0]) {
+        x->sum += x->ch[0]->sum;
+        x->min = min(x->min, x->ch[0]->min);
+        x->size += x->ch[0]->size;
+    }
+    if (x->ch[1]) {
+        x->sum += x->ch[1]->sum;
+        x->min = min(x->min, x->ch[1]->min);
+        x->size += x->ch[1]->size;
+    }
+}
+void rotate(node &x, int d) {
+    node y = x->pre;
+    pushdown(y);
+    pushdown(x);
+    pushdown(x->ch[d]);
+    y->ch[!d] = x->ch[d];
+    if (x->ch[d] != NULL) x->ch[d]->pre = y;
+    x->pre = y->pre;
+    if (y->pre != NULL){
+        if (y->pre->ch[0] == y) y->pre->ch[0] = x; else y->pre->ch[1] = x;
+    }
+    x->ch[d] = y;
+    y->pre = x;
+    update(y);
+    if (y == root) root = x;
+}
+void splay(node &src, node &dst) {
+    pushdown(src);
+    while (src!=dst) {
+        if (src->pre==dst) {
+            if (dst->ch[0]==src) rotate(src, 1); else rotate(src, 0);
+            break;
+        }
+        else {
+            node y=src->pre, z=y->pre;
+            if (z->ch[0]==y) {
+                if (y->ch[0]==src) {
+                    rotate(y, 1);
+                    rotate(src, 1);
+                }else {
+                    rotate(src, 0);
+                    rotate(src, 1);
+                }
+            }
+            else {
+                if (y->ch[1]==src) {
+                    rotate(y, 0);
+                    rotate(src, 0);
+                }else {
+                    rotate(src, 1);
+                    rotate(src, 0);
+                }
+            }
+            if (z==dst) break;
+        }
+        update(src);
+    }
+    update(src);
+}
+void select(int k, node &f) {
+    int tmp;
+    node t = root;
+    while (1) {
+        pushdown(t);
+        tmp = getsize(t->ch[0]);
+        if (k == tmp + 1) break;
+        if (k <= tmp) t = t->ch[0];
+        else {
+            k -= tmp + 1;
+            t = t->ch[1];
+        }
+    }
+    pushdown(t);
+    splay(t, f);
+}
+inline void selectsegment(int l,int r) {
+    select(l, root);
+    select(r + 2, root->ch[1]);
+}
+
+void insert(int pos, int value) {  //在pos位置后面插入一个新值value
+    selectsegment(pos + 1, pos);
+    node t;
+    node x = root->ch[1];
+    pushdown(root);
+    pushdown(x);
+    if (!S.empty()) {
+        t = S.top();
+        S.pop();
+    } else {
+        t = &mem[memtop++];
+    }
+    t->init(value);
+    t->ch[1] = x;
+    x->pre = t;
+    root->ch[1] = t;
+    t->pre = root;
+    splay(x, root);
+}
+void add(int a,int b, int value) {  //区间[a,b]中的数都加上value
+    selectsegment(a, b);
+    node x = root->ch[1]->ch[0];
+    pushdown(x);
+    update(x);
+    x->min += value;
+    x->lazy += value;
+    splay(x, root);
+}
+void reverse(int a, int b) {   //区间[a,b]中的数翻转
+    selectsegment(a, b);
+    root->ch[1]->ch[0]->rev ^= 1;
+    node x = root->ch[1]->ch[0];
+    splay(x, root);
+}
+void revolve(int a, int b, int t) { //区间[a,b]中的数向后循环移t位
+    int tn=b-a+1;
+    t=(t%tn+tn)%tn;
+    if(a==b||t==0)return;
+    node p1, p2;
+    selectsegment(a, b);
+    select(b + 1 - t, root->ch[1]->ch[0]);
+    p1 = root->ch[1]->ch[0];
+    pushdown(p1);
+    p2 = p1->ch[1];
+    p1->ch[1] = NULL;
+
+    select(a + 1, root->ch[1]->ch[0]);
+    p1 = root->ch[1]->ch[0];
+    pushdown(p1);
+    p1->ch[0] = p2;
+    p2->pre = p1;
+
+    splay(p2, root);
+}
+
+ll getmin(int a, int b) {   //取[a,b]中最大的值
+    selectsegment(a, b);
+    node x = root->ch[1];
+    pushdown(x);
+    x = x->ch[0];
+    pushdown(x);
+    update(x);
+    return x->min;
+}
+ll getsum(int a, int b) { //[a,b]区间和
+    selectsegment(a, b);
+    node x = root->ch[1];
+    pushdown(x);
+    x = x->ch[0];
+    pushdown(x);
+    update(x);
+    return x->sum;
+}
+void erase(int pos) {               //抹去第pos个元素
+    selectsegment(pos, pos);
+    pushdown(root->ch[1]);
+    S.push(root->ch[1]->ch[0]);        //回收内存
+    root->ch[1]->ch[0] = NULL;
+    node x = root->ch[1];
+    splay(x, root);
+}
+
+void cutandmove(int a,int b,int c)//移动区间到位置c后
+{
+    selectsegment(a,b);
+    node CutRoot=root->ch[1]->ch[0];
+    CutRoot->pre=NULL;
+    root->ch[1]->size-=CutRoot->size;
+    root->ch[1]->ch[0]=NULL;
+
+    selectsegment(c+1,c);
+
+    CutRoot->pre=root->ch[1];
+    root->ch[1]->ch[0]=CutRoot;
+    root->ch[1]->size+=CutRoot->size;
+}
+
+void cut(int a,int b)//删除区间
+{
+    selectsegment(a,b);
+    node CutRoot=root->ch[1]->ch[0];
+    CutRoot->pre=NULL;
+    root->size-=CutRoot->size;
+    root->ch[1]->size-=CutRoot->size;
+    root->ch[1]->ch[0]=NULL;
+}
+
+vector<int> ans;
+void inorder(node x)
+{
+    if (!x) return;
+    pushdown(x);
+    inorder(x->ch[0]);
+    if (x->value!=inf) ans.push_back(x->value);
+    inorder(x->ch[1]);
+}
+
+void initsplaytree(ll *a, int n) {
+    memtop = 0;
+    root = &mem[memtop++];
+    root->init(inf);
+    root->ch[1] = &mem[memtop++];
+    root->ch[1]->init(inf);
+    while (!S.empty()) S.pop();
+    rep(i) insert(i, a[i]);
+}
+```
+
+### link-cut tree
+
+```c++
+int s[N], val[N], ch[N][2], rev[N], stk[N], fa[N], top;
+bool wh(int p) {return ch[fa[p]][1] == p;}
+bool Isroot(int p) {return ch[fa[p]][wh(p)] != p;}
+void Update(int p) {s[p] = val[p] ^ s[ch[p][0]] ^ s[ch[p][1]];}
+void Pushdown(int p) {
+    if(rev[p]) {
+        rev[p] ^= 1; swap(ch[p][0], ch[p][1]);
+        rev[ch[p][1]] ^= 1; rev[ch[p][0]] ^= 1;
+    }
+}
+void Pushup(int p) {
+    top = 0; stk[++top] = p;
+    for(int i = p; !Isroot(i); i = fa[i]) stk[++top] = fa[i];
+    for(int i = top; i; --i) Pushdown(stk[i]);
+}
+ 
+void Rotate(int p) {
+    int f = fa[p], g = fa[f], c = wh(p);
+    if(!Isroot(f)) ch[g][wh(f)] = p; fa[p] = g;
+    ch[f][c] = ch[p][c ^ 1]; if(ch[f][c]) fa[ch[f][c]] = f;
+    ch[p][c ^ 1] = f; fa[f] = p;
+    Update(f);
+}
+void Splay(int p) {
+    Pushup(p);
+    for(; !Isroot(p); Rotate(p))
+        if(!Isroot(fa[p])) Rotate(wh(fa[p]) == wh(p) ? fa[p] : p);
+    Update(p);
+}
+void Access(int p) {
+    for(int pre = 0; p; pre = p, p = fa[p]) {
+        Splay(p);
+        ch[p][1] = pre;
+        Update(p);
+    }
+}
+void Makeroot(int p) {Access(p); Splay(p); rev[p] ^= 1;}
+int Find(int p) {for(Access(p), Splay(p); ch[p][0]; p = ch[p][0]) ; return p;}
+void Cut(int u, int v) {Makeroot(u); Access(v); Splay(v); ch[v][0] = fa[u] = 0;}
+void Link(int u, int v) {Makeroot(u); fa[u] = v;}
+void Change(int u, int v) {Access(u); Splay(u); val[u] = v; Update(u);}//单点更新
+void Query(int u, int v) {Makeroot(u); Access(v); Splay(v); printf("%d\n", s[v]);}
+```
+
+
+
+### Euler-Tour tree
+
+
+
+​	
+
 
