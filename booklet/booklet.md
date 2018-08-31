@@ -4,6 +4,10 @@
 
 ## 乱七八糟
 
+### 模非质数时取余技巧
+
+​	如果分母较小，可以先余模数乘分母，也就是(x/b)%a=x%(ab)/b，最后在结果出再除分母
+
 ### 01字典树
 
 ```c++
@@ -2656,6 +2660,7 @@ void sa_extend(char c)
 #### 两个字符串的最长子串
 
 ```
+
 pair<int,int> lcs(char *s,int lens,char *t,int lent)//return {len,pos(t)}
 {
     sa_init();
@@ -3076,17 +3081,27 @@ void initsplaytree(ll *a, int n) {
 ### link-cut tree
 
 ```c++
-int s[N], val[N], ch[N][2], rev[N], stk[N], fa[N], top;
-bool wh(int p) {return ch[fa[p]][1] == p;}
-bool Isroot(int p) {return ch[fa[p]][wh(p)] != p;}
-void Update(int p) {s[p] = val[p] ^ s[ch[p][0]] ^ s[ch[p][1]];}
+int mx[N],stk[N],top;
+bool rev[N];
+int s[N], val[N], ch[N][2], fa[N],lazy[N];
+inline bool wh(int p) {return ch[fa[p]][1] == p;}
+inline bool Isroot(int p) {return ch[fa[p]][wh(p)] != p;}
+inline void Update(int p) {/*mx[p] = val[p] ^ mx[ch[p][0]] ^ mx[ch[p][1]];*/}//根据题目修改
+inline void Update_add(int u,int v){if(!u)return ;s[u]+=v;lazy[u]+=v;}
 void Pushdown(int p) {
     if(rev[p]) {
         rev[p] ^= 1; swap(ch[p][0], ch[p][1]);
         rev[ch[p][1]] ^= 1; rev[ch[p][0]] ^= 1;
     }
+    if(lazy[p]){
+        Update_add(ch[p][0],lazy[p]);
+        Update_add(ch[p][1],lazy[p]);
+        lazy[p]=0; 
+    }
 }
-void Pushup(int p) {
+inline void Pushup(int p) {
+    /*if(!Isroot(p))Pushup(fa[p]);
+    Pushdown(p);*/
     top = 0; stk[++top] = p;
     for(int i = p; !Isroot(i); i = fa[i]) stk[++top] = fa[i];
     for(int i = top; i; --i) Pushdown(stk[i]);
@@ -3112,12 +3127,13 @@ void Access(int p) {
         Update(p);
     }
 }
-void Makeroot(int p) {Access(p); Splay(p); rev[p] ^= 1;}
-int Find(int p) {for(Access(p), Splay(p); ch[p][0]; p = ch[p][0]) ; return p;}
-void Cut(int u, int v) {Makeroot(u); Access(v); Splay(v); ch[v][0] = fa[u] = 0;}
-void Link(int u, int v) {Makeroot(u); fa[u] = v;}
-void Change(int u, int v) {Access(u); Splay(u); val[u] = v; Update(u);}//单点更新
-void Query(int u, int v) {Makeroot(u); Access(v); Splay(v); printf("%d\n", s[v]);}
+inline void Makeroot(int p) {Access(p); Splay(p); rev[p] ^= 1;}
+inline int Find(int p) {for(Access(p), Splay(p); ch[p][0]; p = ch[p][0]) ; return p;}
+inline void Change(int u, int v) {Access(u); Splay(u); val[u] = v; Update(u);}//单点更新
+inline void Add(int u,int v,int w){Makeroot(u); Access(v); Splay(v);Update_add(v,w);}//区间更新[1,...]
+inline void Cut(int u, int v) {Makeroot(u); Access(v); Splay(v); ch[v][0] = fa[u] = 0;Add(v,1,-s[u]);}
+inline void Link(int u, int v) {Makeroot(u); fa[u] = v;Add(v,1,s[u]);}
+inline int Query(int u, int v) {Makeroot(u); Access(v); Splay(v); return s[v];}
 ```
 
 
