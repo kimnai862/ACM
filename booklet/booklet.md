@@ -2742,7 +2742,60 @@ void diff(int u)
 	
 	解法：对S+S建立自动机后找字典序最小长度为len(S)的路径，贪心即可
 
-### 序列自动机（待补）
+### 序列自动机
+
+ $next[i][j]$表示在原串i之后第一个j出现的位置
+
+```
+for(int i=n;i;i--)
+{
+	for(int j=1;j<=a;j++) next[i-1][j]=next[i][j];
+	next[i-1][s[i]]=i;
+}
+```
+
+#### 本质不同子序列个数
+
+dp[i]表示前i个数的不同子序列个数，对于a[i]  
+
+1.在之前没出现过，dp[i]=dp[i-1]+dp[i-1]+1  
+
+2.在之前出现过，最近的位置为x，dp[i]=dp[i-1]+dp[i-1]-dp[x-1] 
+
+#### 两个串的公共子序列个数
+
+```
+int dfs(int x,int y)//表示目前字符是串1的第x位，串2的第y位
+{
+	if(f[x][y]) return f[x][y];
+	for(r int i=1;i<=a;i++)
+		if(next1[x][i]&&next2[y][i]) f[x][y]+=dfs(next1[x][i],next2[y][i]);
+	return ++f[x][y];
+}
+//调用：dfs(0,0);
+```
+
+#### 一个串的回文子序列个数
+
+对原串和反串分别构造next数组
+
+```
+int dfs(int x,int y)
+{
+	if(f[x][y]) return f[x][y];//记忆化
+	for(int i=1;i<=26;i++)
+		if(next1[x][i]&&next2[y][i])
+		{
+			if(next1[x][i]+next2[y][i]>n+1) continue;//x+y>n+1,状态不合法,不进行统计
+			if(next1[x][i]+next2[y][i]<n+1) f[x][y]++;
+			//满足x+y=n+1的奇串不会被漏掉,其他奇串需要特别统计
+			f[x][y]=(f[x][y]+dfs(next1[x][i],next2[y][i]))%mod;
+		}
+	return ++f[x][y];
+}
+```
+
+
 
 ## 树相关（待补）
 
