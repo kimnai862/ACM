@@ -811,6 +811,18 @@ void init_mus()
 
 ​	   当d有平方因子x^2时 $\sum_{k^2|d}\mu(k)=\sum_{k^2|x^2}\mu(k)=\sum_{k|x}\mu(k)=0,\mu^2(d)=0$
 
+前n个正整数的莫比乌斯函数平方之和：
+
+​	 $S(n)=\sum_{i=1}^n\mu^2(i)=\sum_{d^2|i}\mu(d)=\sum_{i=1}^{n}\sum_{d=1}^{\sqrt{\lfloor\frac{n}{i}\rfloor}}\mu(d)$
+
+前n个正整数的因数的莫比乌斯函数平方之和：
+
+​	 $S(n)=\sum_{i=1}^{n}\sum_{d|i}\mu^2(d)=\sum_{i=1}^{n}\sum_{d|i}\sum_{k^2|d}\mu(k)=\sum_{i=1}^{n}\mu(i)\sum_{j=1}^{\frac{n}{i^2}}\lfloor\frac{n}{i^2j}\rfloor$
+
+​	可发现i的取值范围可以缩小到$\sqrt{n}$ ，令$f(n)=\sum_{i=1}^{n}\lfloor\frac{n}{i}\rfloor$
+
+​	则 $S(n)=\sum_{i=1}^{\sqrt{n}}\mu(i)f(\lfloor\frac{n}{i^2}\rfloor)$
+
 
 
 ### FFT （快速傅里叶变换）
