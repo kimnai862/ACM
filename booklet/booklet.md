@@ -577,6 +577,12 @@ void find(LL n,LL c)//大数分解
 
 若a,p为正整数且a,p互质 ，则$a^{φ(p)} \equiv 1 (mod p)$ 
 
+### 扩展欧拉定理
+
+ $gcd(a,p)=1时，a^b=a^{b \% \varphi(p)} (mod p)$
+
+ $gcd(a,p)\not =1且b>=\varphi(p)时，a^b=a^{b \% \varphi(p)+\varphi(p)} (mod p)$
+
 ### 费马小定理
 
 若p是质数，则$a^{p-1}\equiv 1 (mod p)$ 
@@ -823,7 +829,31 @@ void init_mus()
 
 ​	则 $S(n)=\sum_{i=1}^{\sqrt{n}}\mu(i)f(\lfloor\frac{n}{i^2}\rfloor)$
 
+小于等于n的两两数最小公倍数之和：
 
+​	 $ans=\sum_{d=1}^{n}d\sum_{i=1}^{\lfloor\frac{n}{d}\rfloor}i^2\varphi(i)$
+
+​	第二个求和式卷积即可求
+
+小于等于n的两两数最大公约数之和：
+
+​	 $ans=\sum_{i=1}^n\lfloor\frac{n}{i}\rfloor\ast \lfloor\frac{n}{i}\rfloor\ast \varphi(i)$
+
+求lcm(a,b)+lcm(a+1,b)+...+lcm(b,b):
+
+​	 $ans=\frac{b}{2}\sum_{T|b}(\frac{b}{T}+\lceil\frac{a}{T}\rceil)(\frac{b}{T}-\lceil\frac{a}{T}\rceil+1)\sum_{d|T}\mu(d)d$
+
+​	最右边和式用积性函数性质算即可
+
+求最小公倍数在某一区间的(x<=y)二元组数量：
+
+​	区间[l,r]=[1,r]-[1,l-1]
+
+​	 $G(n)=\sum_{i=1}^{n}\sum_{y=1}^{n}[\frac{xy}{gcd(x,y)}<=n]=\sum_{k=1}^{\sqrt{n}}\mu(k)H(\lfloor\frac{n}{k^2}\rfloor)$
+
+​	 $H(n)=\sum_{a=1}^n\sum_{b=1}^{\lfloor\frac{n}{a}\rfloor}\sum_{c=1}^{\lfloor\frac{n}{ab}\rfloor}1$
+
+​	 H(n)枚举前两项(a<=b)用组合数求即可
 
 ### FFT （快速傅里叶变换）
 
